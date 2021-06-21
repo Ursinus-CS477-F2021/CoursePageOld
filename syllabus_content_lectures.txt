@@ -1,0 +1,81 @@
+SECTION
+Unit 1: Classical Search
+
+
+LECTURE
+Python Basics: Variables, Methods, Lists, Dictionaries
+
+<ul><li><a href = "https://www.learnpython.org/">learnpython.org</a></li></ul>
+LECTURE
+Python Objects, Object References
+
+Class Exercise: COVID Simulation
+LECTURE
+Recursion, Trees
+
+Class Exercise: Towers of Hanoi
+LECTURE
+Tree Search
+
+
+LECTURE
+Stacks, Queues, Graphs, Graph Search: BFS, DFS
+
+
+LECTURE
+Ethics: The Social Dilemma
+
+
+LECTURE
+Graph Search: Dijkstra's, Best-First Search
+
+
+LECTURE
+A* Search
+
+
+LECTURE
+A* Search, Beam Search
+
+
+LECTURE
+Ethics
+
+
+LECTURE
+Game Trees: Alpha-Beta Pruning
+
+
+LECTURE
+Game Trees: Min-Ma
+
+
+LECTURE
+Ethics
+
+
+SECTION
+Unit 2: Knowledge Representation
+
+
+LECTURE
+Basics of Probability, Markov Chains
+
+
+LECTURE
+Bayes Nets
+
+
+LECTURE
+Ethics
+
+
+LECTURE
+Markov Chain Monte Carlo
+
+
+LECTURE
+Hidden Markov Models
+
+
+
