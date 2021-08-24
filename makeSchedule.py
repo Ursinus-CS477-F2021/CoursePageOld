@@ -40,7 +40,7 @@ for i in range(int(len(lines)/4)):
             color = colors[coloridx]
             coloridx = (coloridx + 1)%2
             day = daysstr[date.weekday()%7]
-            taskstr = "No CS 472 Class.  Enjoy the break!"
+            taskstr = "No CS 477 Class.  Enjoy the break!"
             if "Designated" in Holidays[date]:
                 taskstr = "No CS 472 Class"
             schedule_HTML += "<tr><td>--</td><td>%s %i/%i/%i</td><td>%s</td><td></td><td>%s</td></tr>\n"%(day, date.month, date.day, date.year, Holidays[date], taskstr)

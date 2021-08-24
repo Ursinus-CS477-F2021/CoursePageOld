@@ -1,5 +1,5 @@
 SECTION
-Unit 1: Intro To Python / Classical Search
+Unit 1: Classical Search
 
 
 LECTURE
@@ -39,57 +39,57 @@ Genetic Algorithms
 
 Class Exercise: Smart Tetris
 SECTION
-Unit 2: Markov Models, Knowledge Representation
+Unit 2: Statistical Reasoning, Knowledge Representation
 
 
 LECTURE
-Basics of Probability
+Basics of Probability, Markov Chains
 
 
 LECTURE
-Markov Chains
-
-
-LECTURE
-Hidden Markov Models
-
-
-LECTURE
-The Viterbi Algorithm
-
-
-LECTURE
-Bayesian Networks / Graphical Models
-
-
-LECTURE
-Markov Chain Monte Carlo
+Markov Chains Continued
 
 
 LECTURE
 Ethics: <i>Race After Technology</i>
 
 
+LECTURE
+Bayes Rule
+
+
+LECTURE
+Bayesian Networks / Graphical Models
+
+
 SECTION
-Unit 3: Classical Machine Learning
+Unit 3: Classical Machine Learning: Supervised And Unsupervised
 
 
 LECTURE
-Multivariate Data, Vectorizing Data, Euclidean Distances
+Features, Vectorizing Data
 
-Class Exercise: Image Search
+Class Exercise: College Admissions
 LECTURE
-K-Nearest Neighbor Classification
+Naive Bayes Classification
+
+
+LECTURE
+Euclidean Distances, K-Nearest Neighbor Classification
 
 Class Exercise: Digit Classification
 LECTURE
-Gradient Descent
+Dot Products, Projections
+
+Class Exercise: Eigenfaces
+LECTURE
+Perceptrons, Decision Boundaries, Begin Gradient Descent
 
 
 LECTURE
-Perceptrons, Logistic Regression
+Gradient Descent, Logistic Regression
 
-
+<ul><li><a href = "https://see.stanford.edu/materials/aimlcs229/cs229-notes1.pdf">Andrew Ng's Notes on Logistic Regression</a></li></ul>
 LECTURE
 Ethics: <i>Race After Technology</i>
 
@@ -99,7 +99,7 @@ Polynomial Regression, Overfitting
 
 
 LECTURE
-Decision Trees
+Feature Engineering Case Study: 3D Shape Classification
 
 
 LECTURE
@@ -109,13 +109,13 @@ Unsupervised Learning, K-Means Clustering
 LECTURE
 Principal Component Analysis
 
-
+<ul><li><a href = "http://www.covers1000.net/LoopDitty/">Loop Ditty</a></li></ul>
 LECTURE
 Multidimensional Scaling
 
-
+Class Exercise: College Subject Similarities
 SECTION
-Unit 4: Deep Learning
+Unit 4: Deep Learning: Supervised And Unsupervised
 
 
 LECTURE
@@ -141,7 +141,7 @@ Recurrent Neural Networks
 LECTURE
 Long Short Term Memory
 
-
+<ul><li><a href = "https://towardsdatascience.com/illustrated-guide-to-lstms-and-gru-s-a-step-by-step-explanation-44e9eb85bf21">An illustrated guide to LSTMs and GRUs</a></li></ul>
 LECTURE
 Autoencoders
 

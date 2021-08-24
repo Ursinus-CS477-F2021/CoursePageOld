@@ -13,7 +13,27 @@ Assignment 2 Part 1 (BFS) Due
 Assignment 2 Part 2 (Heuristics) Due
 
 2021-09-20
-Assignment 3: Markov Classification & Hybrids Out
+<HR>Assignment 3: Markov Classification & Hybrids Out
 
-2021-09-22
-Assignment 4: Movie Ratings Out
+2021-09-20
+Assignment 3 Part 1: Hybrids Due
+
+2021-10-03
+Assignment 3 Part 2: Classification Due
+
+2021-10-03
+Assignment 4: 3D Shape Classification Out
+
+2021-10-04
+Assignment 4 Part 1: Naive Bayes, KNN Due
+
+2021-10-13
+Assignment 4 Part 2: Logistic Regression Due
+
+2021-10-25
+<HR>Assignment 5: Super Fashion KMeans Out
+
+2021-10-25
+Assignment 5 Due
+
+2021-11-08
