@@ -1,5 +1,5 @@
 SECTION
-Unit 1: Classical Search
+Unit 1: Intro To Python / Classical Search
 
 
 LECTURE
@@ -11,63 +11,55 @@ Python Objects, Object References
 
 Class Exercise: COVID Simulation
 LECTURE
-Recursion, Trees
-
-Class Exercise: Towers of Hanoi
-LECTURE
-Tree Search
+COVID Simulation, Monte Carlo Techniques
 
 
 LECTURE
-Stacks, Queues, Graphs, Graph Search: BFS, DFS
+Tree Search, Graph Search: Breadth-First Search (BFS), Depth-First Search (DFS)
 
+Class Exercise: Solving A Maze
+LECTURE
+DFS with Generation, Abstract Search Spaces
 
+Class Exercise: 8-Puzzle
 LECTURE
 Ethics: The Social Dilemma
 
 
 LECTURE
-Graph Search: Dijkstra's, Best-First Search
+Iterative Deepening, Bidirectional Search, Uniform Cost Search (Dijkstra's)
 
 
 LECTURE
-A* Search
+Greedy Best-First Search, A* Search
 
-
+Class Exercise: Path Planning
 LECTURE
-A* Search, Beam Search
+Genetic Algorithms
 
-
-LECTURE
-Ethics
-
-
-LECTURE
-Game Trees: Alpha-Beta Pruning
-
-
-LECTURE
-Game Trees: Min-Ma
-
-
-LECTURE
-Ethics
-
-
+Class Exercise: Smart Tetris
 SECTION
-Unit 2: Knowledge Representation
+Unit 2: Markov Models, Knowledge Representation
 
 
 LECTURE
-Basics of Probability, Markov Chains
+Basics of Probability
 
 
 LECTURE
-Bayes Nets
+Markov Chains
 
 
 LECTURE
-Ethics
+Hidden Markov Models
+
+
+LECTURE
+The Viterbi Algorithm
+
+
+LECTURE
+Bayesian Networks / Graphical Models
 
 
 LECTURE
@@ -75,7 +67,110 @@ Markov Chain Monte Carlo
 
 
 LECTURE
-Hidden Markov Models
+Ethics: <i>Race After Technology</i>
 
+
+SECTION
+Unit 3: Classical Machine Learning
+
+
+LECTURE
+Multivariate Data, Vectorizing Data, Euclidean Distances
+
+Class Exercise: Image Search
+LECTURE
+K-Nearest Neighbor Classification
+
+Class Exercise: Digit Classification
+LECTURE
+Gradient Descent
+
+
+LECTURE
+Perceptrons, Logistic Regression
+
+
+LECTURE
+Ethics: <i>Race After Technology</i>
+
+
+LECTURE
+Polynomial Regression, Overfitting
+
+
+LECTURE
+Decision Trees
+
+
+LECTURE
+Unsupervised Learning, K-Means Clustering
+
+
+LECTURE
+Principal Component Analysis
+
+
+LECTURE
+Multidimensional Scaling
+
+
+SECTION
+Unit 4: Deep Learning
+
+
+LECTURE
+Deep Neural Networks
+
+
+LECTURE
+Back Propagation
+
+
+LECTURE
+Stochastic Gradient Descent
+
+
+LECTURE
+Convolutional Neural Networks
+
+
+LECTURE
+Recurrent Neural Networks
+
+
+LECTURE
+Long Short Term Memory
+
+
+LECTURE
+Autoencoders
+
+
+LECTURE
+Generative Adversarial Networks
+
+
+SECTION
+Unit 5: Reinforcement Learning, Game Playing
+
+
+LECTURE
+Game Trees: Min-Max Trees
+
+
+LECTURE
+Game Trees: Alpha-Beta Pruning
+
+Class Exercise: Connect 4
+LECTURE
+Bellman Equations
+
+
+LECTURE
+Reinforcement Learning
+
+
+LECTURE
+Deep Reinforcement Learning
 
 

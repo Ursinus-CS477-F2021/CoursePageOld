@@ -1,0 +1,19 @@
+Assignment 1: Welcome To CS 477 Out
+
+2021-08-30
+Assignment 1 Due
+
+2021-09-06
+<HR>Assignment 2: Rush Hour with Heuristics Out
+
+2021-09-06
+Assignment 2 Part 1 (BFS) Due
+
+2021-09-13
+Assignment 2 Part 2 (Heuristics) Due
+
+2021-09-20
+Assignment 3: Markov Classification & Hybrids Out
+
+2021-09-22
+Assignment 4: Movie Ratings Out
