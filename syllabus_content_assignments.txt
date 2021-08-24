@@ -22,7 +22,7 @@ Assignment 3 Part 1: Hybrids Due
 Assignment 3 Part 2: Classification Due
 
 2021-10-03
-Assignment 4: 3D Shape Classification Out
+Assignment 4: Movie Reviews / Spam Out
 
 2021-10-04
 Assignment 4 Part 1: Naive Bayes, KNN Due
@@ -37,3 +37,15 @@ Assignment 4 Part 2: Logistic Regression Due
 Assignment 5 Due
 
 2021-11-08
+<HR>Assignment 6: Deep Smokestack Segmentation Out
+
+2021-11-08
+Assignment 6 Due
+
+2021-11-18
+Assignment 7: Cat And Mouse Out
+
+2021-11-19
+Assignment 7 Due
+
+2021-12-06

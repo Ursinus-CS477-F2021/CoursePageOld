@@ -99,10 +99,6 @@ Polynomial Regression, Overfitting
 
 
 LECTURE
-Feature Engineering Case Study: 3D Shape Classification
-
-
-LECTURE
 Unsupervised Learning, K-Means Clustering
 
 
@@ -143,6 +139,10 @@ Long Short Term Memory
 
 <ul><li><a href = "https://towardsdatascience.com/illustrated-guide-to-lstms-and-gru-s-a-step-by-step-explanation-44e9eb85bf21">An illustrated guide to LSTMs and GRUs</a></li></ul>
 LECTURE
+Ethics: <i>Race After Technology</i>
+
+
+LECTURE
 Autoencoders
 
 
@@ -155,6 +155,18 @@ Unit 5: Reinforcement Learning, Game Playing
 
 
 LECTURE
+Reinforcement Learning
+
+
+LECTURE
+Bellman Equations
+
+
+LECTURE
+Deep Reinforcement Learning
+
+Class example: Playing Mario
+LECTURE
 Game Trees: Min-Max Trees
 
 
@@ -162,15 +174,19 @@ LECTURE
 Game Trees: Alpha-Beta Pruning
 
 Class Exercise: Connect 4
-LECTURE
-Bellman Equations
-
-
-LECTURE
-Reinforcement Learning
-
+SECTION
+Unit 6: Case Studies
+In this unit, we'll look at a number of examples in detail during class while students work on their final projects
 
 LECTURE
-Deep Reinforcement Learning
+Feature Engineering Case Study: 3D Shape Classification
+
+
+LECTURE
+Deep Dream, Face Generation
+
+
+LECTURE
+Ethics: <i>Race After Technology</i>
 
 
