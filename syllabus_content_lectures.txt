@@ -107,9 +107,9 @@ Principal Component Analysis
 
 <ul><li><a href = "http://www.covers1000.net/LoopDitty/">Loop Ditty</a></li></ul>
 LECTURE
-Multidimensional Scaling
+Survey: Multidimensional Scaling, Manifold Learning
 
-Class Exercise: College Subject Similarities
+<ul><li>Class Exercise: College Subject Similarities</li><li><a href = "https://github.com/ctralie/DREiMac">DREiMac</a></li></ul>
 SECTION
 Unit 4: Deep Learning: Supervised And Unsupervised
 
