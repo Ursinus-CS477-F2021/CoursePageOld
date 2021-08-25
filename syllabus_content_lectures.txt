@@ -115,7 +115,7 @@ Unit 4: Deep Learning: Supervised And Unsupervised
 
 
 LECTURE
-Deep Neural Networks
+Deep Neural Networks, Exploring Latent Spaces
 
 
 LECTURE
