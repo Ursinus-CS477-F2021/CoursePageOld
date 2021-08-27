@@ -3,11 +3,11 @@ Unit 1: Classical Search
 
 
 LECTURE
-Python Basics: Variables, Methods, Lists, Dictionaries
+Python Basics: Variables, <b>Loops, Conditionals</b>, Methods, Lists, <b>Dictionaries</b> (Bolded we'll do in class, the rest is self study)
 
 <ul><li><a href = "https://www.learnpython.org/">learnpython.org</a></li></ul>
 LECTURE
-Python Objects, Object References
+Python Objects, <b>Object References</b>
 
 Class Exercise: COVID Simulation
 LECTURE
