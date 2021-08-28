@@ -1,0 +1,208 @@
+<!DOCTYPE HTML>
+<!--
+	Editorial by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+<!-- Header !-->
+	<head>
+		<title>Ursinus CS 477: Artificial Intelligence And Machine Learning, Fall 2021</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<!--[if lte IE 8]><script src="../../assets/js/ie/html5shiv.js"></script><![endif]-->
+		<link rel="stylesheet" href="../../assets/css/main.css" />
+		<!--[if lte IE 9]><link rel="stylesheet" href="../../assets/css/ie9.css" /><![endif]-->
+		<!--[if lte IE 8]><link rel="stylesheet" href="../../assets/css/ie8.css" /><![endif]-->
+        <style>
+        .image_off, #home:hover .image_on{
+           display:none
+        }
+        .image_on, #home:hover .image_off{
+           display:block
+        }
+        </style>
+	</head>
+	<body>
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Main -->
+					<div id="main">
+						<div class="inner">
+
+							<!-- Header -->
+								<header id="header">
+									<a href="../../index.html" class="logo"><strong>Ursinus CS 477: Artificial Intelligence And Machine Learning, Fall 2021</strong></a>
+								</header>
+<!-- End Header !-->
+
+							<!-- Content -->
+								<p>
+									<header class="main">
+                                        <h2>Week 1: Monte Carlo COVID Simulation in Python</h2>
+                                        <h3>Inspired by <a href = "https://www.washingtonpost.com/graphics/2020/world/corona-simulator/">this article</a> in the Washington Post</h3>
+									</header>
+
+									<div id="page-content">
+									    
+
+                                    <h2>Overview</h2>
+                                    <p>
+                                        In this mini exercise, students will perform a <a href = "https://en.wikipedia.org/wiki/Monte_Carlo_method">Monte Carlo</a> simulation of a model of a spreading epidemic.  This strategy of simulating complex behavior from simple rules is sometimes used to learn models in AI when we don't have a closed for expression for them.  
+                                    </p>
+                                    <p> 
+                                        This particular COVID model is very simple, but it is enough to illustrate the concept of "flattening the curve" (as you will see below) which is why <a href = "http://www.cidrap.umn.edu/sites/default/files/public/php/185/185_factsheet_social_distancing.pdf">social distancing</a> was our best option before we had a vaccine.  The simulation runs hour by hour in a loop, and each person is a dot which is either <code>INFECTED</code>, <code>UNINFECTED</code>, or <code>RECOVERED</code>.  Regardless of infection status, some people are moving, and some people are staying still.  As the simulation proceeds and each moving point moves in a particular direction, the following two rules apply
+                                        <h3><a name = "rules">Rules</a></h3>
+                                        <ol>
+                                            <li>
+                                                If a person who is <code>UNINFECTED</code> becomes close enough to a person who's <code>INFECTED</code>, they become <code>INFECTED</code> as well.
+                                            </li>
+                                            <li>
+                                                A person who has been <code>INFECTED</code> for long enough becomes <code>RECOVERED</code>.  A <code>RECOVERED</code> person does not get sick again, and does not infect anyone.
+                                            </li>
+                                        </ol>
+                                        
+                                    </p>
+
+                                    <h2>Code</h2>
+									<p>
+										Starter code has been provided at <a href = "https://github.com/Ursinus-CS477-F2021/Week1_COVID/blob/main/covid19.py">this link</a>.  It uses <a href = "https://vpython.org/">vpython</a> to create an animation of "people" (cylinders with colors) moving around.  If this code runs properly as given, you should see a bunch of blue cylinders (healthy people) milling about, as shown below
+									</p>
+										<iframe width="560" height="315" src="https://www.youtube.com/embed/Ysx8fe4Wg4M" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+									<p>
+										Your job is to extend the code to do a simulation realizing the rules given above.  In particular, you should take the following steps
+									</p>
+									
+
+									<ul>
+										<li>
+											Create a local variable for storing state, and make everyone in the simulation start off healthy except for the first person in the list
+										</li>
+										<li>
+											Color people who are healthy <code>BLUE</code>, people who are sick <code>RED</code>, and people who are recovered <code>MAGENTA</code>
+										</li>
+										<li>
+											Create a local method to the <code>Person</code> class that accepts another person object, and which causes the calling person to become sick if they are currently healthy but the other person is sick <b>and</b> close enough.  By close enough, we mean that the distance should be within the <code>infect_radius</code> parameter passed to the simulation.  Recall that the formula for the distance between the coordinate pair (x1, y1) and the coordinate pair (x2, y2) is
+
+											<h3>
+												\[ \sqrt{(x_1 - x_2)^2 + (y_1 - y_2)^2} \]
+											</h3>
+										</li>
+										<li>
+											Modify code in the <code>timestep</code> method to keep track of how long someone has been sick, and to change them to <code>RECOVERED</code> if they have been sick longer than the variable <code>RECOVERY_TIME</code>
+										</li>
+										<li>
+											<p>
+												Finally, put everything together in the simulation loop to make the simulation run.  An efficient implementation would use a <a href = "https://docs.scipy.org/doc/scipy/reference/generated/scipy.spatial.KDTree.query_ball_point.html#scipy.spatial.KDTree">KDTree</a> data structure to rule out people who are too far away to infect, but it's OK to do a brute force solution here where for each person, you check every other person to see if they will infect.  Once this is working, you should see something like this:
+											</p>
+
+
+											<iframe width="560" height="315" src="https://www.youtube.com/embed/NFg4CEE-r3g" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+										</li>
+										<li>
+											The infection spreads very quickly in the above simulation, and all but one people get infected!  Modify the code so that only a certain number of people are moving at any given time.  What differences do you see?
+										</li>
+									</ul>
+                                    
+
+                                    <HR>
+                                    <h2>Other Things To Try</h2>
+                                    <p>
+                                        If you finish this and are interested in exploring more, here are some things you can try for fun:
+                                        <ul>
+                                            <li>Try playing around with the number of people and the size of the grid and see what curves you come up with.  To speed things up and to just see the curves in the end, you can set <code>draw</code> to be false.</li>
+                                            <li>See what happens if more than one person starts off infected in different locations</li>
+                                            <li>See what happens if you try to do a "lossy quarantine" of a square region; that is, start the infected person inside the square.  Then, don't let people inside of the square leave, and don't let people out of the square enter, but a small percentage of the time let one through.  Do we still need social distancing in this case?  </li>
+                                            <li>Add a feature so that people die with a certain probability before recovering.  People who have died should not move or infect anymore, and they should be drawn in a different color.</li>
+                                            <li>For those who know a little more math, it is often said that epidemics have <i>exponential</i> growth towards the beginning.  Is that the case in this model?  Why or why not?</li>
+                                        </ul>
+                                    </p>
+                                    
+                                    </div>
+                            </div>
+                        </div>
+                        
+					<!--LaTeX in Javascript!-->
+					<script src="../../../../jsMath/easy/load.js"></script>
+					<!--Syntax highlighting in Javascript!-->
+					<script type="text/javascript" src="../../../../syntaxhighlighter/scripts/shCore.js"></script>
+					<script type="text/javascript" src="../../../syntaxhighlighter/scripts/shBrushJScript.js"></script>
+					<script type="text/javascript" src="../../../../syntaxhighlighter/scripts/shBrushCpp.js"></script>
+					<script type="text/javascript" src="../../../../syntaxhighlighter/scripts/shBrushMatlabSimple.js"></script>
+					<script type="text/javascript" src="../../../../syntaxhighlighter/scripts/shBrushPython.js"></script>
+					<link type="text/css" rel="stylesheet" href="../../../../syntaxhighlighter/styles/shCoreDefault.css"/>
+					<script type="text/javascript">SyntaxHighlighter.all();</script>
+
+<!-- Sidebar -->
+					<div id="sidebar">
+						<div class="inner">
+							<!-- Menu -->
+								<nav id="menu">
+									<header class="major">
+										<h2>Menu</h2>
+									</header>
+									<ul>
+                                        <li>
+											<span class="opener">General</span>
+											<ul>
+												<li><a href = "../../index.html#overview">Overview</a></li>
+												<li><a href = "../../index.html#logistics">Technology Logistics</a></li>
+												<li><a href = "../../index.html#readings">Readings</a></li>
+												<li><a href = "../../index.html#deliverables">Deliverables</a></li>
+												<li><a href = "../../index.html#schedule">Schedule</a></li>
+												<li><a href = "../../index.html#grading">Grading</a></li>
+												<li><a href = "../../index.html#environment">Classroom Environment</a></li>
+												<li><a href = "../../index.html#collaboration">Collaboration Policy</a></li>
+												<li><a href = "../../index.html#other">Other Resources / Policies</a></li>
+											</ul> 
+										</li>
+										<li><a href = "../../Software/index.html">Software</a></li>
+                                        <li>
+											<span class="opener">Assignments</span>
+											<ul>
+												<li>
+													<a href = "https://ursinus-cs477-f2021.github.io/Modules/Module1/Video1">HW0: Python Self Study Module</a>
+												</li>
+											</ul>
+										</li>
+                                        <li>
+											<span class="opener">Class Exercises</span>
+											<ul>
+												<li>
+													<a href = "../../ClassExercises/Week1_Adventure">Week 1: Choose Your Own Adventure</a>
+												</li>
+												<li>
+													<a href = "../../ClassExercises/Week1_COVID">Week 1: Monte Carlo COVID Simulation</a>
+												</li>
+											</ul>
+										</li>
+									</ul>
+								</nav>
+
+
+							<!-- Footer -->
+								<footer id="footer">
+									<p class="copyright">&copy; <a href = "http://www.ctralie.com">Christopher J. Tralie</a>. All rights reserved.  Contact chris.tralie@gmail.com. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
+								</footer>
+
+						</div>
+					</div>
+
+			</div>
+			
+            <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+            <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<!-- End Sidebar !-->
+
+<!-- Scripts -->
+			<script src="../../assets/js/jquery.min.js"></script>
+			<script src="../../assets/js/skel.min.js"></script>
+			<script src="../../assets/js/util.js"></script>
+			<!--[if lte IE 8]><script src="../../assets/js/ie/respond.min.js"></script><![endif]-->
+			<script src="../../assets/js/main.js"></script>
+<!-- End Scripts -->
+	</body>
+</html>
+
