@@ -7,11 +7,11 @@ What is AI?  <p>Python Basics: Variables, Lists, Conditionals, Methods, Loops </
 
 <ul><li><a href = "https://www.learnpython.org/">learnpython.org</a></li></ul>
 LECTURE
-Python Dictionaries, Python Objects, Object References
+Python Dictionaries, Python Practice
 
-Class Exercise: Choose Your Own Adventure
+<ul><li><a href = "ClassExercises/Week1_Adventure">Class Exercise: Choose Your Own Adventure</a></li><li><a href = "https://www.w3schools.com/python/python_dictionaries.asp">w3schools Dictionary Reference</a></li><li><a href = "https://www.geeksforgeeks.org/python-dictionary/">Geeks for Geeks Dictionary Reference</a></li></ul>
 LECTURE
-COVID Simulation, Monte Carlo Techniques
+Python Objects, Object References, COVID Simulation, Monte Carlo Techniques
 
 Class Exercise: COVID Simulation
 LECTURE
