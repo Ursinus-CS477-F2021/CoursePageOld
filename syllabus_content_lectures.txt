@@ -3,17 +3,17 @@ Unit 1: Classical Search
 
 
 LECTURE
-Python Basics: Variables, <b>Loops, Conditionals</b>, Methods, Lists, <b>Dictionaries</b> (Bolded we'll do in class, the rest is self study)
+What is AI?  <p>Python Basics: Variables, Lists, Conditionals, Methods, Loops </p>
 
 <ul><li><a href = "https://www.learnpython.org/">learnpython.org</a></li></ul>
 LECTURE
-Python Objects, <b>Object References</b>
+Python Dictionaries, Python Objects, Object References
 
-Class Exercise: COVID Simulation
+Class Exercise: Choose Your Own Adventure
 LECTURE
 COVID Simulation, Monte Carlo Techniques
 
-
+Class Exercise: COVID Simulation
 LECTURE
 Tree Search, Graph Search: Breadth-First Search (BFS), Depth-First Search (DFS)
 
