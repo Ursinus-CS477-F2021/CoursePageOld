@@ -1,0 +1,245 @@
+<!DOCTYPE HTML>
+<!--
+	Editorial by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+<!-- Header !-->
+	<head>
+		<title>Ursinus CS 477: Artificial Intelligence And Machine Learning, Fall 2021</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<!--[if lte IE 8]><script src="../../assets/js/ie/html5shiv.js"></script><![endif]-->
+		<link rel="stylesheet" href="../../assets/css/main.css" />
+		<!--[if lte IE 9]><link rel="stylesheet" href="../../assets/css/ie9.css" /><![endif]-->
+		<!--[if lte IE 8]><link rel="stylesheet" href="../../assets/css/ie8.css" /><![endif]-->
+        <style>
+        .image_off, #home:hover .image_on{
+           display:none
+        }
+        .image_on, #home:hover .image_off{
+           display:block
+        }
+        </style>
+	</head>
+	<body>
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Main -->
+					<div id="main">
+						<div class="inner">
+
+							<!-- Header -->
+								<header id="header">
+									<a href="../../index.html" class="logo"><strong>Ursinus CS 477: Artificial Intelligence And Machine Learning, Fall 2021</strong></a>
+								</header>
+<!-- End Header !-->
+
+							<!-- Content -->
+								<section>
+									<header class="main">
+                                        <h2>Week 1 Exercise: Choose Your Own Adventure</h2>
+                                        <h3><a href = "http://www.ctralie.com">Chris Tralie</a>, heavily inspired by <a href = "http://www.billmongan.com/">Bill Mongan</a></h3>
+									</header>
+
+									<div id="page-content">
+
+                                        <h2>Overview / Logistics</h2>
+										<p>
+                                            The purpose of this exercise is to give you practice with python dictionaries, which will be very important during the second unit of our class, and which are important in many python data wrangling tasks in general.  The idea for this exercise was inspired by an assignment by <a href = "http://www.billmongan.com/">Bill Mongan</a>.
+                                        </p>
+
+                                        <p>
+                                            <h3>Learning Objectives</h3>
+                                            <ul>
+                                                <li>Practice declaring variables, strings, and lists in python</li>
+                                                <li>Use proper data structures as keys and values in <a href = "https://www.geeksforgeeks.org/python-dictionary/">python dictionaries</a></li>
+                                                <li>Properly index python arrays</li>
+                                                <li>Choose an appropriate loop structure for a given task</li>
+                                            </ul>
+                                        </p>
+
+                                        <h2>Background</h2>
+                                        <p>
+                                            <a href = "https://en.wikipedia.org/wiki/Choose_Your_Own_Adventure">Choose Your Own Adventure</a> books are a series of books from the '80s and '90s in which the reader takes a more active than usual role.  In particular, the books are written in the second person, and they turn over key decisions to the reader.  Based on these decisions, the reader jumps to different pages to see the outcome of those decisions.
+                                        </p>
+                                        <p>
+                                            In this exercise, you'll be designing a <i>Choose Your Own Adventure</i>-style program to tell a dynamic story.  There are four pieces of information that you should represent in your program
+                                            <ol>
+                                                <li>A list of places you can be in your world</li>
+                                                <li>A little blurb describing each place</li>
+                                                <li>A list of places you can travel to next from each place</li>
+                                                <li>Which place you start, and which place ends</li>
+                                            </ol>
+                                        </p>
+
+                                        <p>
+                                            Your Below is a very simple example to illustrate this idea, which pretty much sums up my life as an instructor during quarantine last year (thank goodness those days are over for now...).  The game starts in the office, and it ends whenever someone reaches the outside.
+                                        </p>
+
+                                        <img src = "MyHouse.svg" width = 800 height = 400>
+
+                                        <p>
+                                            A sample run through the program might look like this
+                                        </p>
+
+                                        <ul>
+                                            <li>
+                                                
+                                                <p>
+                                                    You are in the Office.  The place where you frantically try to get everything ready for class.  Where would you like to go?
+                                                </p>
+                                                <p>
+                                                    Options: [Kitchen, Bathroom]
+                                                </p>
+                                                <p>
+                                                    <b>Input: </b> Kitchen
+                                                </p>
+                                            </li>
+
+                                            <li>
+                                                
+                                                <p>
+                                                    You are in the Kitchen.  The place where you heat up frozen food and sometimes (but rarely) cook.  Where would you like to go?
+                                                </p>
+                                                <p>
+                                                    Options: [Office, Upstairs Bedroom, Outside]
+                                                </p>
+                                                <p>
+                                                    <b>Input: </b> Upstairs Bedroom
+                                                </p>
+                                            </li>
+                                            
+                                            <li>
+                                                
+                                                <p>
+                                                    You are in the Upstairs Bedroom.  The place you go rarely when you've finished your work for the day.  Where would you like to go?
+                                                </p>
+                                                <p>
+                                                    Options: [Kitchen, Upstairs Bathroom]
+                                                </p>
+                                                <p>
+                                                    <b>Input: </b> Kitchen
+                                                </p>
+                                            </li>
+
+                                            <li>
+                                                
+                                                <p>
+                                                    You are in the Kitchen.  The place where you heat up frozen food and sometimes (but rarely) cook.  Where would you like to go?
+                                                </p>
+                                                <p>
+                                                    Options: [Office, Upstairs Bedroom, Outside]
+                                                </p>
+                                                <p>
+                                                    <b>Input: </b> Upstairs Bedroom
+                                                </p>
+                                            </li>
+
+                                            <li>
+                                                ......
+                                            </li>
+
+                                        </ul>
+                                            
+
+                                        <h2>Programming Task</h2>
+                                        <p>
+                                            You should create a dictionary called <code>places</code> whose keys are strings with the names of the different places you can go in your story.  The values associated to different keys should be lists of strings.  The first element in this array should be a description of the place, and the remaining elements in this array should be the strings of the places you can reach from this place.  Your program should go through a loop where in each iteration, it prints the place you are and its description, followed by a list of places you can go.  Then, you should wait for input from the user to say which place to go.  Finally, you should have a constant string which represents where the loop starts, and a constant string to represent when the loop should terminate.
+                                        </p>
+
+                                        <p>
+                                            The example I gave is pretty boring (because it mirrors my life!).  But you should feel free to be as creative as you want.  It is recommended that you sketch your world out of paper before you translate it into code.  We will share some of your examples on the class web site.  Have fun!
+                                        </p>
+
+
+
+
+
+
+                                    
+                                </div>
+						</div>
+					</div>
+
+					<!--LaTeX in Javascript!-->
+					<script src="../../../../jsMath/easy/load.js"></script>
+					<!--Syntax highlighting in Javascript!-->
+					<script type="text/javascript" src="../../../../syntaxhighlighter/scripts/shCore.js"></script>
+					<script type="text/javascript" src="../../../syntaxhighlighter/scripts/shBrushJScript.js"></script>
+                    <script type="text/javascript" src="../../../../syntaxhighlighter/scripts/shBrushCpp.js"></script>
+					<script type="text/javascript" src="../../../../syntaxhighlighter/scripts/shBrushXml.js"></script>
+					<script type="text/javascript" src="../../../../syntaxhighlighter/scripts/shBrushMatlabSimple.js"></script>
+					<script type="text/javascript" src="../../../../syntaxhighlighter/scripts/shBrushPython.js"></script>
+					<link type="text/css" rel="stylesheet" href="../../../../syntaxhighlighter/styles/shCoreDefault.css"/>
+					<script type="text/javascript">SyntaxHighlighter.all();</script>
+
+<!-- Sidebar -->
+					<div id="sidebar">
+						<div class="inner">
+							<!-- Menu -->
+								<nav id="menu">
+									<header class="major">
+										<h2>Menu</h2>
+									</header>
+									<ul>
+                                        <li>
+											<span class="opener">General</span>
+											<ul>
+												<li><a href = "../../index.html#overview">Overview</a></li>
+												<li><a href = "../../index.html#logistics">Technology Logistics</a></li>
+												<li><a href = "../../index.html#readings">Readings</a></li>
+												<li><a href = "../../index.html#deliverables">Deliverables</a></li>
+												<li><a href = "../../index.html#schedule">Schedule</a></li>
+												<li><a href = "../../index.html#grading">Grading</a></li>
+												<li><a href = "../../index.html#environment">Classroom Environment</a></li>
+												<li><a href = "../../index.html#collaboration">Collaboration Policy</a></li>
+												<li><a href = "../../index.html#other">Other Resources / Policies</a></li>
+											</ul> 
+										</li>
+										<li><a href = "../../Software/index.html">Software</a></li>
+                                        <li>
+											<span class="opener">Assignments</span>
+											<ul>
+												<li>
+													<a href = "https://ursinus-cs477-f2021.github.io/Modules/Module1/Video1">HW0: Python Self Study Module</a>
+												</li>
+											</ul>
+										</li>
+                                        <li>
+											<span class="opener">Class Exercises</span>
+											<ul>
+												<li>
+													<a href = "../../ClassExercises/Week1_Adventure">Week 1: Choose Your Own Adventure</a>
+												</li>
+											</ul>
+										</li>
+									</ul>
+								</nav>
+
+
+							<!-- Footer -->
+								<footer id="footer">
+									<p class="copyright">&copy; <a href = "http://www.ctralie.com">Christopher J. Tralie</a>. All rights reserved.  Contact chris.tralie@gmail.com. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
+								</footer>
+
+						</div>
+					</div>
+
+			</div>
+			
+            <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+            <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<!-- End Sidebar !-->
+
+<!-- Scripts -->
+			<script src="../../assets/js/jquery.min.js"></script>
+			<script src="../../assets/js/skel.min.js"></script>
+			<script src="../../assets/js/util.js"></script>
+			<!--[if lte IE 8]><script src="../../assets/js/ie/respond.min.js"></script><![endif]-->
+			<script src="../../assets/js/main.js"></script>
+<!-- End Scripts -->
+	</
