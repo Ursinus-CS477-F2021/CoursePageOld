@@ -7,7 +7,7 @@
 <html>
 <!-- Header !-->
 	<head>
-		<title>Ursinus CS 373: Theory of Computation, Fall 2021</title>
+		<title>Ursinus CS 477: Artificial Intelligence And Machine Learning, Fall 2021</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<!--[if lte IE 8]><script src="../../assets/js/ie/html5shiv.js"></script><![endif]-->
@@ -34,22 +34,28 @@
 
 							<!-- Header -->
 								<header id="header">
-									<a href="../../index.html" class="logo"><strong>Ursinus CS 373: Theory of Computation, Fall 2021</strong></a>
+									<a href="../../index.html" class="logo"><strong>Ursinus CS 477: Artificial Intelligence And Machine Learning, Fall 2021</strong></a>
 								</header>
 <!-- End Header !-->
 
 							<!-- Content -->
 								<section>
 									<header class="main">
-                                        <h2>Homework 1: Welcome To CS 477</h2>
+                                        <h2>Homework 1: Welcome To CS 477 (15 Points)</h2>
 									</header>
 
 									<div id="page-content">
 
-                                        <h2>Overview / Logistics</h2>
+                                        <p>
+                                            <h3><a name = "objectives">Learning Objectives</a></h3>
+                                            <ul>
+												<li>Practice python loops and dictionaries</li>
+												<li>Use python dictionaries in the service of statistical modeling</li>
+                                            </ul>
+										</p>
 
 
-										<h3>Part 1 (5 Points)</h3>
+										<h3>Part 1: Welcome to CS 477 (5 Points)</h3>
 
 										There are 5 easy points to earn here:
 										<ol>
@@ -64,7 +70,78 @@
 											</li>
 										</ol>
 										<p>
-											As an ungraded final step, <a href = "https://doodle.com/poll/wgmu62ug8t2g479a?utm_source=poll&utm_medium=link">click here</a> to fill out an office hours survey for what times you can make if you want to make sure that the hours I choose work with your schedule.  Put a check next to every time block for which you can make <b>at least 30 minutes</b> on at that time on that day of the week.
+											As an ungraded final step, <a href = "https://doodle.com/poll/wgmu62ug8t2g479a?utm_source=poll&utm_medium=link">click here</a> to fill out an office hours survey for what times you can make if you want to make sure that the hours I choose work with your schedule.  Put a check next to every time block for which you can make <b>at least 30 minutes</b> on at that time on that day of the week.  I will do my best to ensure that every student can make at least one such block.
+										</p>
+
+										<h3>Part 2: We tomelcs 477777 (10 Points)</h3>
+
+										<p>
+											In this part, you're going to practice with python dictionaries and lists.  The code will be quite short, but it will serve as a springboard to more complex things later on in assignment 3.
+										</p>
+										<p>
+											If we consider the sentence "Welcome to cs 477," we can create a sequence model known as a Markov Chain to describe the string statistically.  In particular, we can create a directed graph with a node for each letter that occurs in our string and directed edges from letters to the letters that follow them.  The picture below shows such a graph for the string "Welcome to cs 477" (<a href = "welcometocs477.jff">Click here</a> to download the <a href = "https://www.jflap.org/">JFlap</a> specification for this graph)
+										</p>
+
+										<img src = "welcometocs477.png" width=700>
+
+										<p>
+											Starting at <b>W</b>, we can follow a path through this graph to recover our original string, as shown below
+										</p>
+
+										<img src = "welcometocs477.gif" width=700>
+
+										<p>
+											However, there are actually (infinitely) many paths we can choose starting at <b>W</b>, such as "We tomelcs 477777"
+										</p>
+
+										<img src = "welcometocs4772.gif" width=700>
+
+										<p>
+											Your job in this task will be to perform a random walk through such a graph and record what string was generated.  The code below shows how to use python dictionaries and lists in concert to setup a data structure that fully captures the above graph
+										</p>
+
+
+
+										<script type="syntaxhighlighter" class="brush: python"><![CDATA[
+											next = {} # This will hold the directed graph
+											s = "Welcome to cs 477"
+											# This loops through all of the characters in s
+											# and keeps track of their indices
+											for i, c in enumerate(s): 
+												if not c in next:
+													# If this is the first time seeing a particular 
+													# character, we need to make a new key/value pair for it
+													next[c] = []
+												if i < len(s)-1: # If there is a character after this
+													# Record that s[i+1] is one of the following characters
+													next[c].append(s[i+1]) ]]></script>   
+										
+										<p>
+											After running this code, you'll see a dictionary with the following key : value pairs
+										</p>
+										
+										<script type="syntaxhighlighter" class="brush: python"><![CDATA[
+											W : ['e']
+											e : ['l', ' ']
+											l : ['c']
+											c : ['o', 's']
+											o : ['m', ' ']
+											m : ['e']
+											  : ['t', 'c', '4']
+											t : ['o']
+											s : [' ']
+											4 : ['7']
+											7 : ['7']</script>   
+
+
+										
+
+										<p>
+											Build on this code to create a subsequent loop that starts at <b>W</b> and takes a random walk of a particular maximum length specified as a variable.  If there are multiple possible next states, choose one uniformly at random.  If there are no next states, then you should stop the loop, even if you haven't reached your maximum length (all of the nodes in the example above have at least one next state, but your code should handle examples that don't).
+										</p>
+
+										<p>
+											When you are finished, submit your code on canvas.
 										</p>
 
 
@@ -110,16 +187,27 @@
 											</ul> 
 										</li>
 										<li><a href = "../../Software/index.html">Software</a></li>
-										<li><a href = "../../FinalProject/index.html">Final Project</a></li>
+										<li><a href = "../../index.html#schedule">Schedule</a></li>
                                         <li>
 											<span class="opener">Assignments</span>
 											<ul>
+												<li>
+													<a href = "https://ursinus-cs477-f2021.github.io/Modules/Module1/Video1">HW0: Python Self Study Module</a>
+												</li>
+												<li>
+													<a href = "../../Assignments/HW1_WelcomeToCS477">HW1: Welcome To CS 477</a>
+												</li>
 											</ul>
 										</li>
                                         <li>
 											<span class="opener">Class Exercises</span>
 											<ul>
-
+												<li>
+													<a href = "../../ClassExercises/Week1_Adventure">Week 1: Choose Your Own Adventure</a>
+												</li>
+												<li>
+													<a href = "../../ClassExercises/Week1_COVID">Week 1: Monte Carlo COVID Simulation</a>
+												</li>
 											</ul>
 										</li>
 									</ul>
