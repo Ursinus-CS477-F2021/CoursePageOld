@@ -5,7 +5,7 @@ Unit 1: Classical Search
 LECTURE
 What is AI?  <p>Python Basics: Variables, Lists, Conditionals, Methods, Loops </p>
 
-<ul><li>Python reference: <a href = "https://donsheehy.github.io/datastructures/fullbook.pdf">Sheehy Ch. 1</a></li><li><a href = "https://blog.piekniewski.info/">AI Winter Blog</a></li><li><a href = "https://arxiv.org/pdf/2103.10292.pdf">Shortcomings and recommendations for machine learning in medical imaging</a></li><li><a href = "https://www.learnpython.org/">learnpython.org</a></li></ul>
+<ul><li>Python reference: <a href = "https://donsheehy.github.io/datastructures/fullbook.pdf">Sheehy Ch. 1</a></li><li><a href = "https://blog.piekniewski.info/">AI Winter Blog</a></li><li><a href = "https://arxiv.org/pdf/2103.10292.pdf">Shortcomings and recommendations for machine learning in medical imaging</a></li><li><a href = "https://www.learnpython.org/">learnpython.org</a></li><li><a href = "ClassExercises/Week1_WhatIsAI/ShazamSonify.ipynb">Shazam Adversarial Example</a></li></ul>
 LECTURE
 Python Dictionaries, Python Practice
 
