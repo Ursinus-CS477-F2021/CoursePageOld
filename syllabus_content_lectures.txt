@@ -9,7 +9,7 @@ What is AI?  <p>Python Basics: Variables, Lists, Conditionals, Methods, Loops </
 LECTURE
 Python Dictionaries, Python Practice
 
-<ul><li><a href = "ClassExercises/Week1_Adventure">Class Exercise: Choose Your Own Adventure</a></li><li><a href = "https://www.w3schools.com/python/python_dictionaries.asp">w3schools Dictionary Reference</a></li><li><a href = "https://www.geeksforgeeks.org/python-dictionary/">Geeks for Geeks Dictionary Reference</a></li></ul>
+<ul><li><a href = "ClassExercises/Week1_Adventure">Class Exercise: Choose Your Own Adventure</a></li><li><a href = "https://www.w3schools.com/python/python_dictionaries.asp">w3schools Dictionary Reference</a></li><li><a href = "https://www.geeksforgeeks.org/python-dictionary/">Geeks for Geeks Dictionary Reference</a></li><li><a href = "ClassExercises/Week1_Adventure/Loops_Dictionaries.html">Class Notes on Loops / Dictionaries</a></li></ul>
 LECTURE
 Python Objects, Object References, COVID Simulation, Monte Carlo Techniques
 
