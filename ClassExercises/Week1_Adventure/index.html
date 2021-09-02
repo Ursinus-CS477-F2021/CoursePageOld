@@ -155,7 +155,54 @@
                                             The example I gave is pretty boring (because it mirrors my life!).  But you should feel free to be as creative as you want.  It is recommended that you sketch your world out of paper before you translate it into code.  We will share some of your examples on the class web site.  Have fun!
                                         </p>
 
+                                        <HR>
+                                        <p>
+                                            Below is a solution to this problem<a name = "solution">:</a>
+                                        </p>
+                                        <iframe src = "pyAdventureSolution.html" width=1100 height=1800></iframe>
 
+                                        <HR>
+                                        <h2><a name ="student">Student Adventures</a></h2>
+
+                                        <table style="width:800px;">
+                                            <tr>
+                                                <td>Choose Adventure</td>
+                                                <td>
+                                                    <div class = "select-wrapper">
+                                                        <select id="adventureMenu" name = "Student Story"></select>
+                                                    </div>
+                                                </td>
+                                                <td colspan="2">
+                                                    <button id = "startStory" onclick="startStory()">▶️ Start Story!</button>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Location</td>
+                                                <td colspan="2">Description</td>
+                                                <td>Next Step</td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <div id="location"></div>
+                                                </td>
+                                                <td colspan="2">
+                                                    <div id="description"></div>
+                                                </td>
+                                                <td>
+                                                    <div class = "select-wrapper">
+                                                        <select id="nextMenu" name = "Student Story">
+                                                    </select>
+                                                    <button id = "goToNext" onclick="goToNext()">▶️ Go!</button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+
+                                                
+                                            
+                                        </table>
+
+
+                                        <script src="stories.js"></script>
 
 
 
@@ -249,4 +296,3 @@
 			<!--[if lte IE 8]><script src="../../assets/js/ie/respond.min.js"></script><![endif]-->
 			<script src="../../assets/js/main.js"></script>
 <!-- End Scripts -->
-	</
