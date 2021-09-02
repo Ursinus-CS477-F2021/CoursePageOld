@@ -5,7 +5,7 @@ Unit 1: Classical Search
 LECTURE
 What is AI?  <p>Python Basics: Variables, Lists, Conditionals, Methods, Loops </p>
 
-<ul><li>Python reference: <a href = "https://donsheehy.github.io/datastructures/fullbook.pdf">Sheehy Ch. 1</a></li><li><a href = "ClassExercises/Week1_WhatIsAI">Class Jamboard</a></li><li><a href = "https://blog.piekniewski.info/">AI Winter Blog</a></li><li><a href = "https://arxiv.org/pdf/2103.10292.pdf">Shortcomings and recommendations for machine learning in medical imaging</a></li><li><a href = "https://www.learnpython.org/">learnpython.org</a></li><li><a href = "ClassExercises/Week1_WhatIsAI/ShazamSonify.html">Shazam Adversarial Example</a></li></ul>
+<ul><li>Python reference: <a href = "https://donsheehy.github.io/datastructures/fullbook.pdf">Sheehy Ch. 2</a></li><li><a href = "ClassExercises/Week1_WhatIsAI">Class Jamboard</a></li><li><a href = "https://blog.piekniewski.info/">AI Winter Blog</a></li><li><a href = "https://arxiv.org/pdf/2103.10292.pdf">Shortcomings and recommendations for machine learning in medical imaging</a></li><li><a href = "https://www.learnpython.org/">learnpython.org</a></li><li><a href = "ClassExercises/Week1_WhatIsAI/ShazamSonify.html">Shazam Adversarial Example</a></li></ul>
 LECTURE
 Python Dictionaries, Python Practice
 
@@ -13,7 +13,7 @@ Python Dictionaries, Python Practice
 LECTURE
 Python Objects, Object References, COVID Simulation, Monte Carlo Techniques
 
-<ul><li><a href = "https://donsheehy.github.io/datastructures/fullbook.pdf">Sheehy Ch. 2</a></li><li><a href = "ClassExercises/Week1_COVID">Class Exercise: COVID Simulation</a></li></ul>
+<ul><li><a href = "https://donsheehy.github.io/datastructures/fullbook.pdf">Sheehy Ch. 3</a></li><li><a href = "ClassExercises/Week1_COVID">Class Exercise: COVID Simulation</a></li></ul>
 LECTURE
 Tree Search, Graph Search: Breadth-First Search (BFS), Depth-First Search (DFS)
 
