@@ -45,6 +45,38 @@ stories["Kevin / Jon"] = {
         "Outside": {"description":"You found the keys! How did you forget them here. Congrats, now get to work.", "next":["Hallway"]}
 };
 
+stories["Jeff / Matt"] = {"start":"Office",
+                         "end":"Outside",
+                         "Office": {"description": "The place you spent way too much time in over the past year",
+                         "next": ["Bathroom", "Kitchen"]},
+                         "Bathroom": {"description": "Yes", "next": ["Office"]},
+                        "Kitchen": {"description": "Food Place", "next": ["Office", "Upstairs Bedroom", "Outside"]},
+                        "Upstairs Bedroom": {"description": "Sleep place", "next": ["Kitchen"]},
+                        "Outside": {"description": "Not in the house", "next": ["Kitchen"]}};
+
+stories["Julian / Vincent"] = {
+          "start":"Dorm",
+          "end":"ROOM 107",
+          "Dorm":{"description":"You are in your dorm which is the start!", "next":["Hallway","Window"]},
+          "Hallway":{"description":"There can only do so much here... like walk and more walk", "next":["Bathroom","Outdoors"]},
+          "Window":{"description":"If you jump out you'll die", "next":["Dorm"]},
+          "Bathroom":{"description":"You do your daily bathroom routine. Use the toilet, brush your teeth and then use the bathroom again", "next":["Hallway"]},
+          "Outdoors":{"description":"You head outside and the sun is beaming on you. You feel like Jesus is watching over you", "next":["Pfahler","Reimert"]},
+          "Pfahler":{"description":"The best building in town and where dreams are made of", "next":["ROOM 107"]},
+          "Reimert":{"description":"HEY YOU SHOULDN'T BE HERE RIGHT NOW", "next":["Outdoors"]},
+          "ROOM 107":{"description":"Welcome to your utopia of CS 477!"}
+        }
+
+
+stories["Tom B / Rich"] = {
+    "start":"room",
+    "room":{"description":"this is the place that i sleep XD", "next":["bathroom", "wismer", "class", "gym", "bomberger"]},
+    "bathroom":{"description":"this is the sacred palace", "next":["room", "wismer", "class", "gym",  "bomberger"]},
+    "wismer":{"description":"this is where i get to eat some food", "next":["room", "gym", "bomberger"]},
+    "class":{"description":"i hope to learn here", "next":["gym",  "bomberger"]},
+    "gym":{"description":"GET BUFF man, LIFT", "next":["bomberger", "room"]},
+    "bomberger":{"description":"the place where me and my friends sing to all of the greatest christmas hits ever heard", "next":["room"]}
+}
 
 
 const adventureMenu = document.getElementById("adventureMenu");
