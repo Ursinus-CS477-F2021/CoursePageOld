@@ -27,7 +27,7 @@ stories["Mike L / Tom S"] = {
     "rollercoaster park": {"description":"place filled with rides and games", "next":["ticket booth"]}
 };
 
-stories["John"] = {
+stories["John / Seraiah"] = {
     "start":"Entrance",
     "end":"Penguins",
     "Entrance": {"description":"The entrance to the zoo.", "next":["Tigers", "Elephants"]},
