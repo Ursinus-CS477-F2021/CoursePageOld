@@ -13,7 +13,7 @@ Python Dictionaries, Python Practice
 LECTURE
 Python Objects, Object References, COVID Simulation, Monte Carlo Techniques
 
-<ul><li><a href = "https://donsheehy.github.io/datastructures/fullbook.pdf">Sheehy Ch. 3</a></li><li><a href = "ClassExercises/Week1_COVID">Class Exercise: COVID Simulation</a></li></ul>
+<ul><li><a href = "https://donsheehy.github.io/datastructures/fullbook.pdf">Sheehy Ch. 3</a></li><li><a href = "ClassExercises/Week1_COVID">Class Exercise: COVID Simulation</a> (<a href = "ClassExercises/Week1_COVID/solution.html">Solution</a>)</li></ul>
 LECTURE
 Tree Search, Graph Search: Breadth-First Search (BFS), Depth-First Search (DFS)
 

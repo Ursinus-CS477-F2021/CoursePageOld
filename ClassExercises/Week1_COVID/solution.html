@@ -42,47 +42,29 @@
 								<p>
 									<header class="main">
                                         <h2>Week 1: Monte Carlo COVID Simulation in Python</h2>
-                                        <h3>Inspired by <a href = "https://www.washingtonpost.com/graphics/2020/world/corona-simulator/">this article</a> in the Washington Post</h3>
+										<h1>Solution</h1>
 									</header>
 
 									<div id="page-content">
 									    
-									<h2><a href = "solution.html">Click here</a> to see the solution</h2>
-
-                                    <h2>Overview</h2>
-                                    <p>
-                                        In this mini exercise, students will perform a <a href = "https://en.wikipedia.org/wiki/Monte_Carlo_method">Monte Carlo</a> simulation of a model of a spreading epidemic.  This strategy of simulating complex behavior from simple rules is sometimes used to learn models in AI when we don't have a closed for expression for them.  
-                                    </p>
-                                    <p> 
-                                        This particular COVID model is very simple, but it is enough to illustrate the concept of "flattening the curve" (as you will see below) which is why <a href = "http://www.cidrap.umn.edu/sites/default/files/public/php/185/185_factsheet_social_distancing.pdf">social distancing</a> was our best option before we had a vaccine.  The simulation runs hour by hour in a loop, and each person is a dot which is either <code>INFECTED</code>, <code>UNINFECTED</code>, or <code>RECOVERED</code>.  Regardless of infection status, some people are moving, and some people are staying still.  As the simulation proceeds and each moving point moves in a particular direction, the following two rules apply
-                                        <h3><a name = "rules">Rules</a></h3>
-                                        <ol>
-                                            <li>
-                                                If a person who is <code>UNINFECTED</code> becomes close enough to a person who's <code>INFECTED</code>, they become <code>INFECTED</code> as well.
-                                            </li>
-                                            <li>
-                                                A person who has been <code>INFECTED</code> for long enough becomes <code>RECOVERED</code>.  A <code>RECOVERED</code> person does not get sick again, and does not infect anyone.
-                                            </li>
-                                        </ol>
-                                        
-                                    </p>
-
-                                    <h2>Code</h2>
-									<p>
-										Starter code has been provided at <a href = "https://github.com/Ursinus-CS477-F2021/Week1_COVID/archive/refs/heads/main.zip">this link</a>.  It uses <a href = "https://vpython.org/">vpython</a> to create an animation of "people" (cylinders with colors) moving around.  If this code runs properly as given, you should see a bunch of blue cylinders (healthy people) milling about, as shown below
-									</p>
-										<iframe width="560" height="315" src="https://www.youtube.com/embed/Ysx8fe4Wg4M" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-									<p>
-										Your job is to extend the code to do a simulation realizing the rules given above.  In particular, you should take the following steps
-									</p>
+									<a href = "index.html">Click here</a> to see the full description, and <a href = "https://github.com/Ursinus-CS477-F2021/Week1_COVID/blob/a25490ab3f1364c4a6543addfb5faed74bddaeee/covid19.py">Click here</a> to see one possible solution.  Below is this solution broken down into each step
 									
 
-									<ul>
+									<ol>
 										<li>
-											Create a local variable for storing state, and make everyone in the simulation start off healthy except for the first person in the list
+											Create a local variable for storing state, and make everyone in the simulation start off healthy except for the first person in the list. 
+											
+											
+											<p>
+												<b><a href = "https://github.com/Ursinus-CS477-F2021/Week1_COVID/commit/6a3d47a0be06e0c35cbbe8b47c9d2fe0960d6d9c">Click here</a> to see changes to the code for this step.  Note how we use a different parameter to the constructor for the first person in the list of all people.</b>
+											</p>
 										</li>
 										<li>
 											Color people who are healthy <code>BLUE</code>, people who are sick <code>RED</code>, and people who are recovered <code>MAGENTA</code>
+
+											<p>
+												<b><a href = "https://github.com/Ursinus-CS477-F2021/Week1_COVID/commit/f6b29e9310378cfe733e412c9f0304c09daa87b4">Click here</a> to see changes to the code for this step.  Note that we are changing the <code>color</code> property of the <code>cylinder</code> object, not the cylinder itself</b>
+											</p>
 										</li>
 										<li>
 											Create a local method to the <code>Person</code> class that accepts another person object, and which causes the calling person to become sick if they are currently healthy but the other person is sick <b>and</b> close enough.  By close enough, we mean that the distance should be within the <code>infect_radius</code> parameter passed to the simulation.  Recall that the formula for the distance between the coordinate pair (x1, y1) and the coordinate pair (x2, y2) is
@@ -90,36 +72,42 @@
 											<h3>
 												\[ \sqrt{(x_1 - x_2)^2 + (y_1 - y_2)^2} \]
 											</h3>
+
+											<p>
+												<b><a href = "https://github.com/Ursinus-CS477-F2021/Week1_COVID/commit/2b02dd7ae33d912e6e8f068bbbb7c1ff50525a0b">Click here</a> to see changes to the code for this step.  We just have to add a single method that does the distance computation and updates a HEALTHY state to a SICK state when appropriate</b>
+											</p>
 										</li>
 										<li>
 											Modify code in the <code>timestep</code> method to keep track of how long someone has been sick, and to change them to <code>RECOVERED</code> if they have been sick longer than the variable <code>RECOVERY_TIME</code>
+
+											<p>
+												<b><a href = "https://github.com/Ursinus-CS477-F2021/Week1_COVID/commit/f195677403d609b6bdb83e87a1f795f1610e16e8">Click here</a> to see changes to the code for this step.  We have to add an instance method, and then we update the <code>timestep</code> method to add on time as time elapses</b>
+											</p>
 										</li>
 										<li>
 											<p>
-												Finally, put everything together in the simulation loop to make the simulation run.  An efficient implementation would use a <a href = "https://docs.scipy.org/doc/scipy/reference/generated/scipy.spatial.KDTree.query_ball_point.html#scipy.spatial.KDTree">KDTree</a> data structure to rule out people who are too far away to infect, but it's OK to do a brute force solution here where for each person, you check every other person to see if they will infect.  Once this is working, you should see something like this:
+												Finally, put everything together in the simulation loop to make the simulation run.  Simply do a brute force solution here where for each person, you check every other person to see if they will infect.  Once this is working, you should see something like this:
 											</p>
+											<P>
+												<b><a href = "https://github.com/Ursinus-CS477-F2021/Week1_COVID/commit/b9f5394d149f04c1c755470c6379c5a83efb51ee">Click here</a> to see changes to the code.  For every person at each time step, we check every other person to see if an infection will occur.</b>
+											</P>
 
-
-											<iframe width="560" height="315" src="https://www.youtube.com/embed/NFg4CEE-r3g" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 										</li>
 										<li>
 											The infection spreads very quickly in the above simulation, and all but one people get infected!  Modify the code so that only a certain number of people are moving at any given time.  What differences do you see?
+											<p>
+												<b><a href = "https://github.com/Ursinus-CS477-F2021/Week1_COVID/commit/a25490ab3f1364c4a6543addfb5faed74bddaeee">Click here</a> to see changes to the code.  We add a parameter to the constructor that will zero out the velocity if the person isn't moving, and we add a parameter to the simulation to specify how many people are moving.  When fewer people are moving, we see that the infection spreads much more slowly.  This is why sheltering in place is such an important part of social distancing.</b>
+											</p>
 										</li>
-									</ul>
+									</ol>
+
+									<h3>Going Further...</h3>
+									<p>
+										For those who are curious, <a href = "https://github.com/Ursinus-CS477-F2021/Week1_COVID/commit/00cb46c8bfc0a605eb09fb72fae1e691d12c8110">click here</a> to see how to do faster proximity checks using a <a href = "https://docs.scipy.org/doc/scipy/reference/generated/scipy.spatial.KDTree.query_ball_point.html#scipy.spatial.KDTree.query_ball_point">KD Tree</a> data structure.  This helps each person to quickly rule out people who are too far away to possibly infect them given a particular infection radius
+									</p>
                                     
 
-                                    <HR>
-                                    <h2>Other Things To Try</h2>
-                                    <p>
-                                        If you finish this and are interested in exploring more, here are some things you can try for fun:
-                                        <ul>
-                                            <li>Try playing around with the number of people and the size of the grid and see what curves you come up with.  To speed things up and to just see the curves in the end, you can set <code>draw</code> to be false.</li>
-                                            <li>See what happens if more than one person starts off infected in different locations</li>
-                                            <li>See what happens if you try to do a "lossy quarantine" of a square region; that is, start the infected person inside the square.  Then, don't let people inside of the square leave, and don't let people out of the square enter, but a small percentage of the time let one through.  Do we still need social distancing in this case?  </li>
-                                            <li>Add a feature so that people die with a certain probability before recovering.  People who have died should not move or infect anymore, and they should be drawn in a different color.</li>
-                                            <li>For those who know a little more math, it is often said that epidemics have <i>exponential</i> growth towards the beginning.  Is that the case in this model?  Why or why not?</li>
-                                        </ul>
-                                    </p>
+                                    
                                     
                                     </div>
                             </div>
@@ -186,9 +174,6 @@
 												</li>
 												<li>
 													<a href = "../../ClassExercises/Week1_COVID">Week 1: Monte Carlo COVID Simulation</a>
-													<ul>
-														<li><a href = "../../ClassExercises/Week1_COVID/solution.html">Solution</a></li>
-													</ul>
 												</li>
 											</ul>
 										</li>
