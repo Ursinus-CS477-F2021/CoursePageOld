@@ -1,5 +1,5 @@
 let stories = {};
-stories["Alexa/Manning"] = {"start":"swings",
+stories["Alexa / Manning"] = {"start":"swings",
                             "end":"WaterFountain",
                             "slide":{"description":"meant to go down, but more fun to run up", "next":["merryGoRound", "WaterFountain"]},
                             "seesaw": {"description":"grab a friend and bounce up and down","next":["monkey bars", "slide"]},
@@ -7,6 +7,31 @@ stories["Alexa/Manning"] = {"start":"swings",
                             "swings": {"description":"Soar through the air", "next":["seesaw", "monkey bars", "merryGoRound"]},
                             "merryGoRound": {"description":"warning beware of dizziness","next":["seesaw", "monkey bars", "WaterFountain"]},
                             "WaterFountain": {"description":"take a refreshing drink"}
+};
+
+
+stories["Julian / Vincent"] = {
+    "start":"Dorm",
+    "end":"ROOM 107",
+    "Dorm":{"description":"You are in your dorm which is the start!", "next":["Hallway","Window"]},
+    "Hallway":{"description":"There can only do so much here... like walk and more walk", "next":["Bathroom","Outdoors"]},
+    "Window":{"description":"If you jump out you'll die", "next":["Dorm"]},
+    "Bathroom":{"description":"You do your daily bathroom routine. Use the toilet, brush your teeth and then use the bathroom again", "next":["Hallway"]},
+    "Outdoors":{"description":"You head outside and the sun is beaming on you. You feel like Jesus is watching over you", "next":["Pfahler","Reimert"]},
+    "Pfahler":{"description":"The best building in town and where dreams are made of", "next":["ROOM 107"]},
+    "Reimert":{"description":"HEY YOU SHOULDN'T BE HERE RIGHT NOW", "next":["Outdoors"]},
+    "ROOM 107":{"description":"Welcome to your utopia of CS 477!"}
+};
+
+
+stories["Shane / Will"] = {
+"start":"LA",
+"end":"Dubai",
+"LA" : {"description":"You're so fancy, we already know. You're in the fast lane, from LA to Tokyo.", "next": ["Tokyo"]},
+"Tokyo" : {"description":"Ok Iggy where to now? Ikimashou!", "next":["LA", "London", "Paris"]},
+"London" : {"description":"After some tea and crumpets its time to hop on the jet to fly elsewhere.", "next":["Tokyo", "Paris"]},
+"Paris" : {"description":"You are getting bedazzled by the paparazzi, quick get out while you still can!", "next":["LA", "London", "Dubai"]},
+"Dubai" : {"description":"You made it to your five star hotel, it's time to relax by the pool."}
 };
 
 stories["Mike K / Jeremy"] = {"start":"main",
@@ -54,19 +79,6 @@ stories["Jeff / Matt"] = {"start":"Office",
                         "Upstairs Bedroom": {"description": "Sleep place", "next": ["Kitchen"]},
                         "Outside": {"description": "Not in the house", "next": ["Kitchen"]}};
 
-stories["Julian / Vincent"] = {
-          "start":"Dorm",
-          "end":"ROOM 107",
-          "Dorm":{"description":"You are in your dorm which is the start!", "next":["Hallway","Window"]},
-          "Hallway":{"description":"There can only do so much here... like walk and more walk", "next":["Bathroom","Outdoors"]},
-          "Window":{"description":"If you jump out you'll die", "next":["Dorm"]},
-          "Bathroom":{"description":"You do your daily bathroom routine. Use the toilet, brush your teeth and then use the bathroom again", "next":["Hallway"]},
-          "Outdoors":{"description":"You head outside and the sun is beaming on you. You feel like Jesus is watching over you", "next":["Pfahler","Reimert"]},
-          "Pfahler":{"description":"The best building in town and where dreams are made of", "next":["ROOM 107"]},
-          "Reimert":{"description":"HEY YOU SHOULDN'T BE HERE RIGHT NOW", "next":["Outdoors"]},
-          "ROOM 107":{"description":"Welcome to your utopia of CS 477!"}
-        }
-
 
 stories["Tom B / Rich"] = {
     "start":"room",
@@ -76,7 +88,8 @@ stories["Tom B / Rich"] = {
     "class":{"description":"i hope to learn here", "next":["gym",  "bomberger"]},
     "gym":{"description":"GET BUFF man, LIFT", "next":["bomberger", "room"]},
     "bomberger":{"description":"the place where me and my friends sing to all of the greatest christmas hits ever heard", "next":["room"]}
-}
+};
+
 
 
 const adventureMenu = document.getElementById("adventureMenu");
