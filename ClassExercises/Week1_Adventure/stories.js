@@ -61,6 +61,15 @@ stories["John / Seraiah"] = {
     "Penguins": {"description":"You've reached the penguin exhibit. They are adorable."}
 };
 
+stories["Marcos / Sam"] = {
+    "start":"My Room",
+    "end":"Wismer",
+    "My Room":{"description":"There are some LED's and posters. Your humble abode.", "next":["Wismer","IDC"]},
+    "IDC":{"description":"You studied some in the IDC.", "next":["Pfhaler","Wismer"]},
+    "Wismer":{"description":"You eat some food and run into some friends. You are now trapped at Wismer >:)"},
+    "Pfhaler":{"description":"You just went to theory of computation and AI.", "next":["My Room","Wismer"]}
+};
+
 stories["Kevin / Jon"] = {
     "start":"Master Bedroom",
         "Master Bedroom": {"description":"You just woke up. Your phone tells you its 11:00 AM and you are were supposed to arrive at 9:00 AM to work. Find your keys!!", "next":["Master Bathroom", "Hallway"]},
