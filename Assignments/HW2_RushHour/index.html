@@ -56,12 +56,47 @@
 
 										<h2>Background</h2>
 										<p>
-											This assignment was inspired heavily by an assignment I did 11 years ago <a href = "https://www.cs.princeton.edu/courses/archive/fall10/cos402/assignments/rushhour/">when I first took AI</a>.  You will use classical search techniques to solve the rush hour problem.
+											This assignment was inspired heavily by an assignment I did 11 years ago <a href = "https://www.cs.princeton.edu/courses/archive/fall10/cos402/assignments/rushhour/">when I first took AI</a>.  You will use classical search techniques to solve the rush hour problem.  This is a game where you have to move rectangular "cars" on a grid out of the way to make room for a red car to reach an exit.  Below is an interactive example, courtesy of <a href = "https://github.com/valerielu">Valerie Lu</a>.
 										</p>
 
-										<h2>Starter Code</h2>
-										<p>
+										<iframe src = "rushhour/index.html" width=800 height=800></iframe>
 
+										<p>
+											To translate this into a problem that a computer can understand, we'll use the <a href = "../../ClassExercises/Week2_BasicSearch/">classical search</a> framework.  In this case, our model is as follows:
+											<ul>
+												<li>A <b>state</b> is a fixed configuration of cars on the board</li>
+												<li>A <b>goal state</b> is a state in which the red car overlaps with the exit (Note that there may be multiple valid goal states)</li>
+												<li>A <b>neighboring state</b> is a state that we can reach by moving one of the cars by a single step without hitting any other cars.</li>
+											</ul>
+										</p>
+
+										<p>
+											Like all search problems in this framework, we can think of this like a graph.  Below is an interactive example where each state is shown as a node and neighboring states are connected by an edge.  We simply have to find a path from the starting state to a goal state.
+										</p>
+
+										<iframe src = "InteractiveExample/index.html" width=900 height=900></iframe>
+
+										<h2>Starter Code</h2>
+
+										<p>
+											<a href = "https://github.com/Ursinus-CS477-F2021/HW2_RushHour/archive/refs/heads/main.zip">Click here</a> to download the starter code that you will fill in for this assignment.  This code has just enough for you to represent 
+										</p>
+
+
+
+										<h3>Jupyter</h3>
+										<p>
+											It is probably easiest to test this in Jupyter.  You can setup Jupyter to automatically reload any modules that you import.  If you create your Jupyter notebook in the same folder as <code>rush.py</code>, then here's how you would have it automatically reload code that you write
+										</p>
+
+										<script type="syntaxhighlighter" class="brush: py"><![CDATA[
+											%load_ext autoreload
+											%autoreload 2
+											from rush import *
+										</script>
+
+										<p>
+											As you will see in the examples, there are ways to plot the states that you're working with, and these notebooks are a very convenient way to view all of them.
 										</p>
 
 
