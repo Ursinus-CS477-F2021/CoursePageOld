@@ -13,24 +13,24 @@ Assignment 0 Parts 4,5 Due before Class
 Assignment 1 Due
 
 2021-09-06
-<HR>Assignment 2: Rush Hour with Heuristics Out
+<a href = "Assignments/HW2_RushHour">Assignment 2: The Rush Hour Problem</a> Out
 
-2021-09-06
-Assignment 2 Part 1 (BFS) Due
+2021-09-07
+Assignment 2 Part 1 (BFS Tree Search) Due
 
-2021-09-13
-Assignment 2 Part 2 (Heuristics) Due
+2021-09-14
+Assignment 2 Part 2 (Graph Search + A* Search) Due
 
-2021-09-20
-<HR>Assignment 3: Markov Classification & Hybrids Out
+2021-09-21
+Assignment 3: Markov Classification & Hybrids Out
 
 2021-09-20
 Assignment 3 Part 1: Hybrids Due
 
-2021-10-03
+2021-09-28
 Assignment 3 Part 2: Classification Due
 
-2021-10-03
+2021-10-06
 Assignment 4: Movie Reviews / Spam Out
 
 2021-10-04

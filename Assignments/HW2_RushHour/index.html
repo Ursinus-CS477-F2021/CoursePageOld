@@ -41,22 +41,54 @@
 							<!-- Content -->
 								<section>
 									<header class="main">
-                                        <h2>Homework 2: </h2>
+                                        <h2>Homework 2: The Rush Hour Problem (65 Points)</h2>
 									</header>
+									<h3><a href = "http://www.ctralie.com">Chris Tralie</a></h3>
+									<h3>Part 1 Due Tue 9/14/2021 at 11:59PM</h3>
+									<h3>Part 2 Due Tue 9/21/2021 at 11:59PM</h3>
 
 									<div id="page-content">
 
+										<ul>
+											<li><a href = "#objectives">Learning Objectives</a></li>
+											<li><a href = "#starter">Starter Code</a></li>
+											<li><a href = "#part1">Part 1: Breadth-First Tree Search</a>
+												<ul>
+													<li><a href = "#goal">Goal Node (5 Points)</a></li>
+													<li><a href = "#neighbors">Neighboring States (10 Points)</a></li>
+													<li><a href = "#bfstree">Breadth-First Tree Search (15 Points)</a></li>
+													<li><a href = "#turnin1">What To Turn In</a></li>
+												</ul>
+											</li>
+											<li><a href = "#part2">Part 2: Smarter Searching</a>
+												<ul>
+													<li>
+														<a href = "#graphsearch">Graph Search (10 Points)</a>
+													</li>
+													<li>
+														<a href = "#astar">A* Search (15 Points)</a>
+													</li>
+													<li>
+														<a href = "#myheuristic">Designing Your Own Heuristic (10 Points)</a>
+													</li>
+													<li>
+														<a href = "#turnin2">What To Turn In</a>
+													</li>
+												</ul>
+											</li>
+										</ul>
+
                                         <p>
-                                            <h3><a name = "objectives">Learning Objectives</a></h3>
+                                            <h2><a name = "objectives">Learning Objectives</a></h2>
                                             <ul>
 												<li>Translate algorithm specifications into code</li>
-												<li>Implement tree and graph versions of breadth-first search on an abstract search space using object oriented paradigms in Python</li>
+												<li>Implement tree and graph versions of classical search algorithms on an abstract search space using object oriented paradigms in Python</li>
                                             </ul>
 										</p>
 
-										<h2>Background</h2>
+										<h2><a name = "background">Background</a></h2>
 										<p>
-											This assignment was inspired heavily by an assignment I did 11 years ago <a href = "https://www.cs.princeton.edu/courses/archive/fall10/cos402/assignments/rushhour/">when I first took AI</a>.  You will use classical search techniques to solve the rush hour problem.  This is a game where you have to move rectangular "cars" on a grid out of the way to make room for a red car to reach an exit.  Below is an interactive example, courtesy of <a href = "https://github.com/valerielu">Valerie Lu</a>.
+											This assignment was inspired heavily by an assignment I did 11 years ago <a href = "https://www.cs.princeton.edu/courses/archive/fall10/cos402/assignments/rushhour/">when I first took AI</a>.  You will use classical search techniques to solve the rush hour problem.  This is a game where you have to move rectangular "cars" on a grid out of the way to make room for a red car to reach an exit.  <a name = "valerielu">Below</a> is an interactive example, courtesy of <a href = "https://github.com/valerielu">Valerie Lu</a>.
 										</p>
 
 										<iframe src = "rushhour/index.html" width=800 height=800></iframe>
@@ -76,52 +108,179 @@
 
 										<iframe src = "InteractiveExample/index.html" width=900 height=900></iframe>
 
-										<h2>Starter Code</h2>
+										<h2><a name = "starter">Starter Code</a></h2>
 
 										<p>
-											<a href = "https://github.com/Ursinus-CS477-F2021/HW2_RushHour/archive/refs/heads/main.zip">Click here</a> to download the starter code that you will fill in for this assignment.  This code has just enough for you to represent 
+											<a href = "https://github.com/Ursinus-CS477-F2021/HW2_RushHour/archive/refs/heads/main.zip">Click here</a> to download the starter code that you will fill in for this assignment.  This code has just enough for you to represent the state of a puzzle board and to load in puzzles, but you'll have to build the core functionality for searching from scratch.
 										</p>
+
+										<p>
+											Here's what you need to know about the code
+										</p>
+
+										<ul>
+											<li>
+												<p>
+													An object of type <code>Car</code> holds 4 pieces of information: the row that the car starts on (<code>i</code>), the column that the car starts on (<code>j</code>), the length of the car <code>L</code>, and whether the car is oriented horizontally (<code>horiz</code>).  If it is not oriented horizontally, then it is oriented vertically.  For example, if we had the car <code>i = 1, j = 2, L = 3, horiz=False</code> on a 6x6 grid, it would be at this location
+												</p>
+
+												<img src = "Ex1.png">
+
+												<p>
+													If instead we had <code>i = 4, j = 1, L = 4, horiz=True</code>, the car would be at this location
+												</p>
+
+												<img src = "Ex2.png">
+											</li>
+											<li>The <code>State</code> class encapsulates all information that's needed to fully specify a configuration of the board, including the following 4 pieces of information: 
+												<ul>
+													<li>
+														A variable <code>N</code> which indicates the size of the grid (e.g. <code>N = 6</code> is a 6x6 grid).  
+													</li>
+													<li>
+														A  goal location <code>goal</code>, which is a 2-element list <code>[i, j]</code> indicating the row and column, respectively, of the location on the grid the red car has to touch to have reached the goal.
+													</li>
+													<li>
+														A list of <code>Car</code> objects called <code>cars</code> which stores all of the cars currently on the board.  <b>The first car in the list will always be the red car that needs to get to the exit</b>
+													</li>
+													<li>
+														A variable <code>prev</code> which you can use later in <a href = "#bfstree">BFS tree search</a>, <a href = "#graphsearch">BFS graph search</a>, and <a href = "#astar">A* search</a> to keep track of which states came before this state.
+													</li>
+												</ul>
+											</li>
+											<li>
+												<p>
+													A helper method called <code>get_state_grid</code> has been provided that returns a 2D array indicating which cells of the grid are occupied.  A cell <code>i, j</code> has the number <code>k</code> if the car at index <code>k</code> in the cars list overlaps with that cell, or -1 otherwise.  For example, below is its puzzle with this 2D array superimposed
+												</p>
+
+												<img src = "Grid.png">
+
+
+											</li>
+											<li>
+												<p>
+													A helper method called <code>get_state_hashable</code> has been provided which returns the grid as a string which uniquely identifies the board, and which will be useful later in the <a href = "#graphsearch">BFS graph search</a> and <a href = "#astar">A* search</a> tasks to see if a state has already been visited
+												</p>
+											</li>
+										</ul>
 
 
 
 										<h3>Jupyter</h3>
 										<p>
-											It is probably easiest to test this in Jupyter.  You can setup Jupyter to automatically reload any modules that you import.  If you create your Jupyter notebook in the same folder as <code>rush.py</code>, then here's how you would have it automatically reload code that you write
+											It is probably easiest to test this in Jupyter.  You can setup Jupyter to automatically reload any modules that you import.  If you create your Jupyter notebook in the same folder as <code>rush.py</code>, then here's some code that will load <a href = "#valerielu">Valerie Lu's</a> "hard puzzle"
 										</p>
 
-										<script type="syntaxhighlighter" class="brush: py"><![CDATA[
-											%load_ext autoreload
-											%autoreload 2
-											from rush import *
-										</script>
+										<iframe src = "ExampleRuns/HardPuzzle.html" width=800 height=700></iframe>
+										
 
 										<p>
-											As you will see in the examples, there are ways to plot the states that you're working with, and these notebooks are a very convenient way to view all of them.
+											As you can see in this example, it's possible to plot the states that you're working with to help you debug, and these notebooks are a very convenient way to view such plots.  You can also simply print the states if you want.  In this case, the array returned from <code>get_state_grid()</code> will simply be printed out in a human readable format
 										</p>
 
 
-										<h2>Part 1: Breadth-First Tree Search</h2>
+										<h2><a name = "part1">Part 1: Breadth-First Tree Search</a></h2>
 
 										<h3><a name = "goal">Goal Node (5 Points)</a></h3>
 										<p>
 											Create a method that returns <code>True</code> if the state is a goal node and <code>False</code> otherwise.  You can use this later as a helper method when you're implementing your search techniques.
 										</p>
 
-										
-										<script type="syntaxhighlighter" class="brush: python"><![CDATA[
-											W : ['e']
-											e : ['l', ' ']
-											l : ['c']
-											c : ['o', 's']
-											o : ['m', ' ']
-											m : ['e']
-											  : ['t', 'c', '4']
-											t : ['o']
-											s : [' ']
-											4 : ['7']
-											7 : ['7']</script>   
+										<p>
+											As an example, supposing that your method is called <code>is_goal</code>, here's what you should get for one of the regular puzzles
+										</p>
+
+										<iframe src="ExampleRuns/NotAtGoal.html" width=800 height=610></iframe>
+
+										<p>
+											And here's what you should get if the red car does happen to be at is goal state
+										</p>
+
+										<iframe src="ExampleRuns/AtGoal.html" width=800 height=610></iframe>
+
+										<h3><a name = "neighbors">Neighboring States (10 Points)</a></h3>
+										<p>
+											Write a method to create a list of <code>State</code> objects which represent neighboring states of this state.  For example, the first state of <a href = "HW2_RushHour/jams/3.txt">jams/3.txt</a> has 5 neighbors.  Supposing that your instance method is called <code>get_neighbors</code>, the code below will plot these 5 neighbors in Jupyter
+										</p>
+										<p>
+											<b>Note: </b> Your neighbors may not come out in the same order as mine, and that's fine as long as they're all there.
+										</p>
+										<p>
+											<b>Hint: </b> To make this easier, you might want to take advantage of the provided methods <code>get_state_grid</code> and <code>clone</code>.  You can use <code>clone</code> to make a <a href = "https://www.geeksforgeeks.org/copy-python-deep-copy-shallow-copy/">deep copy</a> of the current state that you can then change to turn it into a neighboring state by moving one of the cars in the copy.  To figure out which cars can move, you can use the grid you get back from <code>get_state_grid</code> to check to see if there's empty space each car can move into. 
+										</p>
+
+										<iframe src="ExampleRuns/Neighbors.html" width=800 height=600></iframe>
+										<p></p><p></p>
+
+										<h3><a name = "bfstree">Breadth-First Tree Search (15 Points)</a></h3>
+
+										<p>
+											Now that you have a way of generating neighbors and figuring out which states are the goal, you should fill in the instance method <code>solve</code> that returns a list of states leading from the beginning of the puzzle to a goal node.  You can accomplish this by implementing <a href = "../../ClassExercises/Week2_BasicSearch/index.html#bfstree">breadth-first tree search</a>.  You'll need to take it one step further than simply a goal exists, however; you will also need to show all of the steps of a solution that get there.  In particular, before you push a state onto the queue, you should update its <code>prev</code> variable to store where it came from.  Then you can <b>trace back</b> from the goal node you found to the start node.
+										</p>
+
+										<p>
+											<b>Hint: </b> You can use a regular list to implement a queue in python.  The <code>pop()</code> method takes something off of the end, and if you say <code>pop(0)</code> it will take something off of the beginning.  Recall also that <code>append()</code> puts something on the end
+										</p>
+
+										<p>
+											The solution below is to a very easy puzzle where a brown car just needs to move down one space to make way for the blue goal car to reach the exit
+										</p>
+										<iframe src="ExampleRuns/VeryEasyTreeSolve.html" width=800 height=600></iframe>
+
+										<p>
+											Below is the "easy" example from <a href = "#valerielu">Valerie Lu's app</a>.  Don't even try this until you get the "very easy" example above working...tree search is already starting to take a while on this one.
+										</p>
+
+										<p>
+											<b>Note: </b> Your solution may not be exactly the same as mine if your neighbors don't come out in the same order, but it should have 9 steps.
+										</p>
+
+										<iframe src="ExampleRuns/EasyTreeSolve.html" width=800 height=600></iframe>
 
 
+										<h3><a name = "turnin1">What To Turn In</a></h3>
+										<p>
+											When you are finished with this part, upload your <code>rush.py</code> code to Canvas.  Also indicate the answer to these questions with your submission:
+											<ul>
+												<li>Did you work with a <a href = "../../index.html#buddy">buddy</a>?  If so, who?</li>
+												<li>
+													How long did this take you?  I'm simply using this to gauge if things are too easy, too hard, or just right.
+												</li>
+												<li>
+													Any feedback to help improve the assignment for future students?  Alternatively, if there's nothing you would change, let me know what specifically worked for you about it so I know to keep doing things like that.
+												</li>
+											</ul>
+										</p>
+
+
+										<p></p>
+										<p></p>
+										<HR>
+											<h2><a name = "part2">Part 2: Smarter Searching</a></h2>
+
+											<p>
+												In this part, you will build much powerful solvers by remembering things and using human knowledge to help guide the problem
+											</p>
+
+											<h3><a name = "graphsearch">Graph Search (10 Points)</a></h3>
+											<p>
+												Coming soon...
+											</p>
+
+											<h3><a name = "astar">A* Search (15 Points)</a></h3>
+											<p>
+												Coming soon...
+											</p>
+
+											<h3><a name = "myheuristic">Designing Your Own Heuristic (10 Points)</a></h3>
+											<p>
+												Coming soon...
+											</p>
+
+											<h3><a name = "turnin2">What To Turn In</a></h3>
+											<p>
+												Coming soon...
+											</p>
 										
 
 
@@ -176,6 +335,9 @@
 												</li>
 												<li>
 													<a href = "../../Assignments/HW1_WelcomeToCS477">HW1: Welcome To CS 477</a>
+												</li>
+												<li>
+													<a href = "../../Assignments/HW2_RushHour">HW2: The Rush Hour Problem</a>
 												</li>
 											</ul>
 										</li>
