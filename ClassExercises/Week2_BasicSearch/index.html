@@ -1,0 +1,373 @@
+<!DOCTYPE HTML>
+<!--
+	Editorial by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+<!-- Header !-->
+	<head>
+		<title>Ursinus CS 477: Artificial Intelligence And Machine Learning, Fall 2021</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<!--[if lte IE 8]><script src="../../assets/js/ie/html5shiv.js"></script><![endif]-->
+		<link rel="stylesheet" href="../../assets/css/main.css" />
+		<!--[if lte IE 9]><link rel="stylesheet" href="../../assets/css/ie9.css" /><![endif]-->
+		<!--[if lte IE 8]><link rel="stylesheet" href="../../assets/css/ie8.css" /><![endif]-->
+        <style>
+        .image_off, #home:hover .image_on{
+           display:none
+        }
+        .image_on, #home:hover .image_off{
+           display:block
+        }
+        </style>
+	</head>
+	<body>
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Main -->
+					<div id="main">
+						<div class="inner">
+
+							<!-- Header -->
+								<header id="header">
+									<a href="../../index.html" class="logo"><strong>Ursinus CS 477: Artificial Intelligence And Machine Learning, Fall 2021</strong></a>
+								</header>
+<!-- End Header !-->
+
+							<!-- Content -->
+								<section>
+									<header class="main">
+                                        <h2>Week 2: Basic Search Algorithms</h2>
+										<h3>Chris Tralie</h3>
+										<h3>9/6/2021</h3>
+									</header>
+
+									<div id="page-content">
+										<p>
+											<b>Important New Terms:</b> autonomous agent, state, neighbors, graph, frontier, bfs, dfs, node expansion, branching factor, depth
+										</p>
+                                        <p>
+                                            Today we talked about some basic "blind search" algorithms for an <b>autonomous agent</b> to explore an unknown environment.  We want to think broadly about a model where an agent <b>starts</b> in a particular <b>state</b> and wants to reach a particular <b>goal state</b> via a sequence of moves through other states.  Each state has a list of <b>neighbors</b>, which are states that are reachable via a single move.
+										</p>
+										<p>
+											The above is an intentionally vague and general definition, and it is problem specific what is meant by a state, how to define a goal state, and what the neighbors of a particular state are.  But to keep things concrete to start with, we will think about exploring <b>graph</b>.  A graph is a collection of nodes which are connected by edges.  We will focus on <b>undirected graphs</b> in this discussion, where if an edge exists from a node <b>a</b> to a node <b>b</b>, then it is possible to travel both from <b>a</b> to <b>b</b> and from <b>b</b> to <b>a</b>.  In this context, we can think of a state as a node, and nodes connected by an edge are each others' neighbors.  For example, in the graph below, we start at node <b>e</b> and want to reach node <b>c</b> by following a sequence of edges.  The neighbors of <b>e</b> are <b>{b, d, i, f}</b>, so the first step we take has to visit one of them.
+										</p>
+
+										<table>
+											<tr>
+												<td><img src = "ExampleGraph.svg"></td>
+											</tr>
+											<tr>
+												<td><b>Figure 1: An example graph search problem</b></td>
+											</tr>
+										</table>
+
+										<p>
+											To keep things even simpler for the moment, we'll consider a <b>pixel grid graph</b>, which is a type of graph that's typically used for mazes.  It is a grid of pixels where a white pixel is a node in the graph and a black pixel is a void.  All white pixels that border each other to the left/right or above/below are connected by an edge.  The image below shows an example:
+										</p>
+
+										<table>
+											<tr>
+												<td><img src = "GridGraph.svg"></td>
+											</tr>
+											<tr>
+												<td><b>Figure 2: An example of a pixel grid graph</b></td>
+											</tr>
+										</table>
+
+										<h2>Blind Search And The Frontier</h2>
+										<p>
+											We started with a class example where students start at particular pixel in a pixel graph and have to move towards a goal pixel.  Pixels that have been explored are colored white, and pixels that are on the <b>frontier</b>, or the locations that are on the list of things to explore next, were marked in grey.  Students could only move to locations on the frontier next, and at that point, the pixel would turn white and its neighbors would be added to the frontier.  To drive the point home that we're talking about <b>blind search</b> algorithms, all unexplored pixels that aren't on the frontier are colored black (you can think of this like the "<a href = "https://cnc.fandom.com/wiki/Fog_of_war">fog of war</a>" in RTS games).  
+											
+											<p>
+												Below is the example that you can try again for yourself.  Left click on the gray pixels to expand them.
+											</p>  
+										</p>
+										<div id = "manualSearch"></div>
+										<script src = "../../Materials/MazeExplorer/maze.js"></script>
+										<script>
+											let maze = new Maze("manualSearch");
+											maze.loadMaze("../../Materials/MazeExplorer/Maze1.png");
+										</script>
+
+										<HR>
+										<h2>
+											Breadth-First Search
+										</h2>
+										<p>
+											As students reflected on the strategies they used to explore this unknown environment, one strategy that came up is referred to as <b>breadth-first search (BFS)</b>.  On the pixel graph, we can think of this like a ripple that moves outwards from the start pixel at an <i>equal rate in all directions</i>.  
+										</p>
+										<p>
+											To define BFS mathematically, we need a queue data structure, which is also known as a "FIFO" data structure because the first objects we add are the first objects we remove (<a href = "https://www.geeksforgeeks.org/queue-data-structure/">click here</a> to review queues).  In other words, a queue acts like any normal line, where the people at the front of the line get serviced first and new people waiting have to go to the back of the line.  We'll refer to the operation of adding something as <code>push</code> and the operation of removing something as <code>pop</code>.  
+										</p>
+
+										<p>
+											The pseudocode below shows the implementation of something known as <b>Breadth-First Tree Search</b>.  We refer to the operation of adding all neighbors of a node to the queue as <b>expanding</b> that node.
+										</p>
+
+<div style="font-size: larger;">
+<pre>
+<code>
+BFSTree(start, goal):
+	state = start
+	frontier = []  // This is the queue
+	reachedGoal = false
+	while not reachedGoal and length(frontier) > 0:
+		// Take out element from front of line
+		state = frontier.pop()
+		if state == goal:
+			reachedGoal = true
+		else:
+			// Expand node
+			for n in state.neighbors():
+				frontier.push(n)
+</code>
+</pre>
+</div>
+										<p>
+											Let's examine the behavior of this algorithm below.  We'll show the current node in blue, the next node that's planning to be expanded in cyan, and all of the nodes on the frontier in grey.
+										</p>
+
+										<div id = "bfstree"></div>
+										<script src = "../../Materials/MazeExplorer/maze.js"></script>
+										<script>
+											let maze2 = new BFSDFS("bfstree", null, true, true);
+											maze2.loadMaze("../../Materials/MazeExplorer/Maze1.png");
+										</script>
+
+										<p>
+											This algorithm does eventually reach the goal, but it takes a <b>long</b> time (nearly 5000 steps).  Part of the problem is that we redo a lot of work because we never remember what we have visited.  We can see this by building a tree that gives us an idea of what's on the frontier.  Let's take again the example of a simple graph
+										</p>
+
+										<table>
+											<tr>
+												<td><img src = "ExampleGraph.svg"></td>
+											</tr>
+											<tr>
+												<td><b>Figure 1: An example graph search problem</b></td>
+											</tr>
+										</table>
+
+										<p>
+											Below is a depiction of how the search radius grows as nodes are added to the queue.  The level of the tree corresponds to how many steps it took to get to the nodes at that level.  We'll follow the convention that we add the neighbors in counter-clockwise order by the rendering of the tree, starting at some arbitrary neighbor.  
+										</p>
+
+										<img src = "BFSTreeExpansion.svg" width=60%>
+										<p></p><p></p>
+										<p>
+											When we first expand <b>e</b>, we add its neighbors <b>d, i, f, b</b> to the queue.  This is shown at the first level of the tree.  Then, once each of these neighbors has been expanded, the queue contains <b>h, e, e, e, j, g, a, e</b>.  We can already see at this stage what the problem is: we're repeating a ton of work by having to revisit <b>e</b> multiple times.  This will only get worse as we go.  In more philosophical terms, <b>Those that fail to learn from history are doomed to repeat it</b> (<a href = "https://liberalarts.vt.edu/magazine/2017/history-repeating.html">-George Santayana</a>)
+										</p>
+										<p>
+											To get an idea of just how bad things are, let's do a more formal analysis of the above algorithm.  We define the <b>branching factor (b)</b> to be the maximum number of neighbors at each node, and the <b>depth</b> to be the minimum number of states that we need to follow to get from the start to the goal.  If we relate how many nodes are at each level of the tree, we see the following:
+											<ul>
+												<li>
+													The first level after expanding the start node has <b>b</b> nodes in the worst case
+												</li>
+												<li>
+													The second level has <b>b<SUP>2</SUP></b> nodes in the worst case, because each of the <b>b</b> nodes in the first level could each have expanded into their own set of <b>b</b> nodes.
+												</li>
+												<li>
+													The third level has <b>b<SUP>3</SUP></b> nodes by similar reasoning
+												</li>
+												<li>
+													...
+												</li>
+												<li>
+													By the time we reach the goal node, we have <b>b<SUP>d</SUP></b> nodes on the frontier
+												</li>
+											</ul>
+										</p>
+
+										<p>
+											As an example, let's suppose we're doing a search on an <b>M x N</b> grid with all pixels filled in, and the start and goal nodes are on opposite ends.  In this case, it takes M+N-1 steps for any shortest path from the start to the goal, and so the depth <b>d = M+N-1</b>.  We know from the above construction that the branching factor <b>b = 4</b> (every node potentially has a left/right/up/down neighbor).  So there will be <b>4<SUP>M+N-1</SUP></b> nodes on the frontier by the time the goal is found.  This is pretty lousy, because there are only <B>MxN</B> unique states on the grid to begin with, so we're clearly repeating tons of them to reach such a large number.  For example, if <b>M = N = 10</b>, there are only 100 unique states on the grid, but there will be <b>4<SUP>19</SUP> = 274877906944</b>.  If we have nearly a trillion nodes on such a trivially small grid, then we're in trouble for any reasonably sized grid.
+										</p>
+
+										<HR>
+										<h2>Breadth-First Graph Search</h2>
+										<p>
+											To fix the above problem, what we need to do is remember where we have visited.  This is actually just a simple modification to the procedure we already have with one new data structure for storing where we have been 
+										</p>
+
+<div style="font-size: larger;">
+<pre>
+<code>
+BFSTree(start, goal):
+	state = start
+	frontier = []  // This is the queue
+	<b>visited = {} // Store what we have visited</b>
+	reachedGoal = false
+	while not reachedGoal and length(frontier) > 0:
+		// Take out element from front of line
+		state = frontier.pop()
+		if state == goal:
+			reachedGoal = true
+		else:
+			// Expand node
+			for n in state.neighbors():
+				<b>if not n in visited and not n in frontier:</b>
+					frontier.push(n)
+</code>
+</pre>
+</div>
+										<p>
+											Let's see how this runs on the example we've been looking at 
+										</p>
+
+										<div id = "bfsgraph"></div>
+										<script src = "../../Materials/MazeExplorer/maze.js"></script>
+										<script>
+											let maze3 = new BFSDFS("bfsgraph", null, true, false);
+											maze3.loadMaze("../../Materials/MazeExplorer/Maze1.png");
+										</script>
+
+										<p>
+											Now it only takes 224 steps instead of nearly 5000!  Furthermore, there are never more than 9 nodes on the queue since we're careful not to re-add anything that's already on the frontier or which has already been visited. 
+										</p>
+
+										<h2>Depth-First Search</h2>
+										<p>
+											Another strategy we can take is to try to follow one direction for a while until we run out of things to explore, and then back up and try another direction.  This is what's known as <b>depth first search (DFS)</b>.  The pseudocode is nearly identical to the pseudocode for BFS, except <b>we use a stack instead of a queue</b> to store the states in the frontier.  A stack is what's known as a "Last in First Out" (LIFO), or, equivalently, a "First In Last Out" data structure (<a href = "https://www.geeksforgeeks.org/stack-data-structure/">Click here</a> to review stacks).  Instead of thinking of it like people lining up, you can think of it like a stack of plates.  You don't want to disturb the stack, so you always pop off the very top most plate, which also happens to be the most recently added one.
+										</p>
+										<p>
+											This subtle change in the data structure makes a huge difference.  Below is a demonstration of depth first graph search where we remember things as we go
+										</p>
+
+										<div id = "dfsgraph"></div>
+										<script src = "../../Materials/MazeExplorer/maze.js"></script>
+										<script>
+											let maze4 = new BFSDFS("dfsgraph", null, false, false);
+											maze4.loadMaze("../../Materials/MazeExplorer/Maze1.png");
+										</script>
+
+										<p>
+											We actually get a little lucky in this example because we happen sto start exploring the right direction first.  Here's an example where we're a little bit less lucky
+										</p>
+
+										<div id = "dfsgraph2"></div>
+										<script src = "../../Materials/MazeExplorer/maze.js"></script>
+										<script>
+											let maze5 = new BFSDFS("dfsgraph2", null, false, false);
+											maze5.loadMaze("../../Materials/MazeExplorer/Maze2.png");
+										</script>
+
+										<p>
+											So in general, we can't really say which out of BFS or DFS is better in terms of runtime if we're doing a blind search.  However, DFS does have better memory usage in some cases.  We will discuss this more within the next few classes.
+										</p>
+
+										<p>
+											One last thing to be aware of is a huge problem that can happen with the tree-based version of DFS.  If you look at the example below, you'll see it after a fairly short amount of time
+										</p>
+
+										<div id = "dfsgraph3"></div>
+										<script src = "../../Materials/MazeExplorer/maze.js"></script>
+										<script>
+											let maze6 = new BFSDFS("dfsgraph3", null, false, true);
+											maze6.loadMaze("../../Materials/MazeExplorer/Maze1.png");
+										</script>
+
+										<p>
+											In particular, tree-based DFS <b>can run into infinite loops</b>.  If we return to our toy graph example, we end up in a loop around the starting node, as shown by the picture below
+										</p>
+
+										<img src = "DFSTreeExpansion.svg" width="60%">
+
+										<p>
+											Surprisingly, there is actually a way to patch this up so that it works and has some advantages over the other techniques.  We will discuss this within the next few classes
+										</p>
+
+
+
+                                    
+                                </div>
+						</div>
+					</div>
+
+
+<!-- Sidebar -->
+					<div id="sidebar">
+						<div class="inner">
+							<!-- Menu -->
+								<nav id="menu">
+									<header class="major">
+										<h2>Menu</h2>
+									</header>
+									<ul>
+                                        <li>
+											<span class="opener">General</span>
+											<ul>
+												<li><a href = "../../index.html#overview">Overview</a></li>
+												<li><a href = "../../index.html#logistics">Technology Logistics</a></li>
+												<li><a href = "../../index.html#readings">Readings</a></li>
+												<li><a href = "../../index.html#deliverables">Deliverables</a></li>
+												<li><a href = "../../index.html#schedule">Schedule</a></li>
+												<li><a href = "../../index.html#grading">Grading</a></li>
+												<li><a href = "../../index.html#environment">Classroom Environment</a></li>
+												<li><a href = "../../index.html#collaboration">Collaboration Policy</a></li>
+												<li><a href = "../../index.html#other">Other Resources / Policies</a></li>
+											</ul> 
+										</li>
+										<li><a href = "../../Software/index.html">Software</a></li>
+										<li><a href = "../../index.html#schedule">Schedule</a></li>
+                                        <li>
+											<span class="opener">Assignments</span>
+											<ul>
+												<li>
+													<a href = "https://ursinus-cs477-f2021.github.io/Modules/Module1/Video1">HW0: Python Self Study Module</a>
+												</li>
+												<li>
+													<a href = "../../Assignments/HW1_WelcomeToCS477">HW1: Welcome To CS 477</a>
+												</li>
+											</ul>
+										</li>
+                                        <li>
+											<span class="opener">Class Exercises</span>
+											<ul>
+												<li>
+													<a href = "../../ClassExercises/Week1_WhatIsAI">Week 1: What Is AI?</a>
+												</li>
+												<li>
+													<a href = "../../ClassExercises/Week1_Adventure">Week 1: Choose Your Own Adventure</a>
+													<ul>
+														<li><a href = "../../ClassExercises/Week1_Adventure/index.html#student">Student Adventures</a></li>
+													</ul>
+												</li>
+												<li>
+													<a href = "../../ClassExercises/Week1_COVID">Week 1: Monte Carlo COVID Simulation</a>
+													<ul>
+														<li><a href = "../../ClassExercises/Week1_COVID/solution.html">Solution</a></li>
+													</ul>
+												</li>
+												<li>
+													<a href = "../../ClassExercises/Week2_BasicSearch">Week 2: Blind Maze Searching</a>
+												</li>
+											</ul>
+										</li>
+									</ul>
+								</nav>
+
+
+							<!-- Footer -->
+								<footer id="footer">
+									<p class="copyright">&copy; <a href = "http://www.ctralie.com">Christopher J. Tralie</a>. All rights reserved.  Contact chris.tralie@gmail.com. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
+								</footer>
+
+						</div>
+					</div>
+
+			</div>
+			
+            <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+            <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<!-- End Sidebar !-->
+
+<!-- Scripts -->
+			<script src="../../assets/js/jquery.min.js"></script>
+			<script src="../../assets/js/skel.min.js"></script>
+			<script src="../../assets/js/util.js"></script>
+			<!--[if lte IE 8]><script src="../../assets/js/ie/respond.min.js"></script><![endif]-->
+			<script src="../../assets/js/main.js"></script>
+<!-- End Scripts -->
