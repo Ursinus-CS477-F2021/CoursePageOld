@@ -4,3 +4,9 @@
 [submodule "Materials/MazeExplorer"]
 	path = Materials/MazeExplorer
 	url = https://github.com/Ursinus-CS477-F2021/MazeExplorer.git
+[submodule "Assignments/HW2_RushHour/HW2_RushHour"]
+	path = Assignments/HW2_RushHour/HW2_RushHour
+	url = https://github.com/Ursinus-CS477-F2021/HW2_RushHour.git
+[submodule "Assignments/HW2_RushHour/rushhour"]
+	path = Assignments/HW2_RushHour/rushhour
+	url = https://github.com/valerielu/rushhour.git
