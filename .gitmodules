@@ -1,3 +1,6 @@
 [submodule "ClassExercises/Week1_COVID/Week1_COVID"]
 	path = ClassExercises/Week1_COVID/Week1_COVID
 	url = https://github.com/Ursinus-CS477-F2021/Week1_COVID.git
+[submodule "Materials/MazeExplorer"]
+	path = Materials/MazeExplorer
+	url = git@github.com:Ursinus-CS477-F2021/MazeExplorer.git

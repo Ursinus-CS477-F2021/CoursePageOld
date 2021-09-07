@@ -17,7 +17,7 @@ Python Objects, Object References, COVID Simulation, Monte Carlo Techniques
 LECTURE
 Tree Search, Graph Search: Breadth-First Search (BFS), Depth-First Search (DFS)
 
-Class Exercise: Solving A Maze
+<ul><li><a href = "Materials/MazeExplorer">Class Exercise: Solving A Maze</a></li><li><a href = "ClassExercises/Week2_BasicSearch">Blind Search Class Notes</a></li></ul>
 LECTURE
 DFS with Generation, Abstract Search Spaces
 
